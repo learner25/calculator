@@ -79,7 +79,7 @@
                   </div>
                </div>
             </div>
-               
+                
           </el-col>
           <el-col :span="2" :offset="1">
             <div class="grid-content bg-purple-light">
