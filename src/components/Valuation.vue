@@ -347,7 +347,7 @@
                 <!--year 2-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="com_net_gross"></el-input>
+                <el-input placeholder="Please input" v-model="com_y2_sensitivity"></el-input>
                 <div class="block">
                      
                   </div>
@@ -368,13 +368,13 @@
           <!--year 4-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input"></el-input>
+               <el-input placeholder="Please input" v-model="com_y4_sensitivity"></el-input>
             </div>
           </el-col>
           <!--year 5-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input"></el-input>
+               <el-input placeholder="Please input" v-model="com_y5_sensitivity"></el-input>
             </div>
           </el-col>
       </el-row>
@@ -504,13 +504,25 @@
       },
       com_net_yield(){
         console.log("annual rent",this.annualRentValue)
-         console.log("gross",this.annualRentValue)
-        return 10000*this.annualRentValue/ (this.propertyValue+ this.com_gross)+"%";
+         console.log("gross",this.propertyValue+ this.com_gross)
+        return 100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)))+"%";
       },
        com_y1_sensitivity(){
-         var d = 10000*this.annualRentValue/ (this.propertyValue+ this.com_gross);
+         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
+         return d-2*this.YieldSensitivityIncreamentValue+"%";
+       },
+        com_y2_sensitivity(){
+         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
          return d-this.YieldSensitivityIncreamentValue+"%";
-       }
+       },
+        com_y4_sensitivity(){
+         var d = 100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
+         return d+this.YieldSensitivityIncreamentValue+"%";
+       },
+        com_y5_sensitivity(){
+         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
+         return d+2*this.YieldSensitivityIncreamentValue+"%";
+       },
      },
      methods:{
        propvalchng(){
