@@ -315,14 +315,36 @@
           <el-collapse-item name="1">
     <template slot="title">
       Yield Sensitivity
+    
     </template>
+        <!--row 1-->
           <el-row>
          <!--property value-->
+          
+          <div class="block">
+           <el-col :span="4" :offset="10">
+              <el-input v-model="YieldSensitivityIncreamentValue">
+                  <template slot="append">%</template>
+              </el-input>
+                    <el-slider
+                      v-model="YieldSensitivityIncreamentValue"
+                      :step="0.10"
+                      :max="1000"
+                      >
+                    </el-slider>
+                     <div>{{YieldSensitivityIncreamentValue}}%</div>
+                  
+           </el-col>
+           </div>
+          </el-row>
+          <el-row>
+            <!--year 1-->
           <el-col :span="4"><div class="grid-content bg-purple">
               <el-input placeholder="Please input" v-model="input">
                 </el-input>
                 </div>
                 </el-col>
+                <!--year 2-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model="com_net_gross"></el-input>
@@ -331,6 +353,7 @@
                   </div>
                </div>
           </el-col>
+          <!--year 3-->
           <el-col :span="4" :offset="1">
             <div class="grid-content bg-purple">
 
@@ -342,18 +365,20 @@
             </div>
               
           </el-col>
+          <!--year 4-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+               <el-input placeholder="Please input"></el-input>
             </div>
           </el-col>
+          <!--year 5-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+               <el-input placeholder="Please input"></el-input>
             </div>
           </el-col>
       </el-row>
-      <!--annual rent-->
+      <!--row 2-->
          <el-row>
          <!--property value-->
           <el-col :span="4"><div class="grid-content bg-purple">
@@ -410,6 +435,7 @@
            propertyArea:0,
            annualRentValue:0,
            NetYield:0,
+           YieldSensitivityIncreamentValue:0,
            purchaseCostPercentage:1.80,
            LegalFees:0,
            LegalFeesPercentage:0.075,
