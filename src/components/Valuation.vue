@@ -302,7 +302,7 @@
 </el-row>
                 <el-row :gutter="20">
   <el-col :span="6"><div class="grid-content bg-purple">Net Yield</div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"><el-input></el-input></div></el-col>
+  <el-col :span="6"><div class="grid-content bg-purple"><el-input v-model="com_net_yield"></el-input></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> 
     <el-input placeholder="Please input" disabled v-model="input3">
     <template slot="prepend">YP</template>
@@ -318,34 +318,25 @@
     </template>
           <el-row>
          <!--property value-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Property Value</el-col>
-          <el-col :span="6">
+          <el-col :span="4"><div class="grid-content bg-purple">
+              <el-input placeholder="Please input" v-model="input">
+                </el-input>
+                </div>
+                </el-col>
+          <el-col :span="4">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+                <el-input placeholder="Please input" v-model="com_net_gross"></el-input>
                 <div class="block">
-                    <el-slider
-                      v-model="value8"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
                      
                   </div>
                </div>
           </el-col>
-          <el-col :span="6" :offset="1">
+          <el-col :span="4" :offset="1">
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="input"></el-input>
+                <el-input placeholder="Please input" v-model="com_net_yield"></el-input>
                 <div class="block">
-                    <el-slider
-                      v-model="value8"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
-                     
                   </div>
                </div>
             </div>
@@ -353,51 +344,50 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="add"></el-button>
+               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="grid-content bg-purple-light">
+               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
             </div>
           </el-col>
       </el-row>
       <!--annual rent-->
-       <el-row>
-         <!--property area-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Annual Rent</el-col>
-          <el-col :span="6">
+         <el-row>
+         <!--property value-->
+          <el-col :span="4"><div class="grid-content bg-purple">
+              <el-input placeholder="Please input" v-model="input">
+                </el-input>
+                </div>
+                </el-col>
+          <el-col :span="4">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input"
-                 @change="areachange"
-                 v-model="annualRentValue"></el-input>
+                <el-input placeholder="Please input" v-model="input"></el-input>
                 <div class="block">
-                    <el-slider
-                      v-model="annualRentValue"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
                      
                   </div>
                </div>
           </el-col>
-          <el-col :span="6" :offset="1">
+          <el-col :span="4" :offset="1">
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="propertyArea"></el-input>
+                <el-input placeholder="Please input" v-model="propertyValue"></el-input>
                 <div class="block">
-                    <el-slider
-                      v-model="value8"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
-                     
                   </div>
                </div>
             </div>
-             
+              
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="grid-content bg-purple-light">
+               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
             </div>
           </el-col>
       </el-row>
@@ -419,6 +409,7 @@
            propertyValue:0,
            propertyArea:0,
            annualRentValue:0,
+           NetYield:0,
            purchaseCostPercentage:1.80,
            LegalFees:0,
            LegalFeesPercentage:0.075,
@@ -480,6 +471,9 @@
         return this.com_legal_fees+
                this. com_agency_fees+
                this. com_agency_fees
+      },
+      com_net_yield(){
+        return this.annualRentValue/this.com_gross+"%";
       }
      },
      methods:{
