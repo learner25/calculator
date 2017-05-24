@@ -353,7 +353,7 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-button type="primary" icon="add"></el-button>
             </div>
           </el-col>
       </el-row>
