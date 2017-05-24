@@ -1,8 +1,11 @@
 <template>
   <div class="hello">
-    <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
+    <el-tabs  type="border-card">
     <el-tab-pane label="Valuation" name="first">
-       <valuation>
+       <valuation @propertyValueinput="setpropertyVal"
+                  @annualRentValueinput="setAnnualRentVal"
+                  @propertyAreainput="setPropertyArea"
+       >
 
        </valuation>
     </el-tab-pane>
@@ -12,7 +15,9 @@
       </finance>
       </el-tab-pane>
     <el-tab-pane label="Goal Seek" name="third">
-      <goal></goal>
+      <goal :propval="propertyVal"
+        :annualrent="annualrentVal"
+      ></goal>
     </el-tab-pane>
     
   </el-tabs>
@@ -30,8 +35,25 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       input:'',
-      value8:8
+      value8:8,
+      propertyVal:0,
+      annualrentVal:0,
+      propertyArea:0
+    }
+  },
+  methods:{
+    setpropertyVal(data){
+      this.propertyVal = data;
       
+    },
+    setAnnualRentVal(data){
+      this.annualrentVal = data;
+      
+    },
+    setPropertyArea(data)
+    {
+       
+      this.propertyArea=data;
     }
   }
 }

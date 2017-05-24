@@ -6,7 +6,7 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Property Value</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="input"></el-input>
+                <el-input placeholder="Please input" v-model="propval"></el-input>
                 <div class="block">
                   
                   </div>
@@ -33,7 +33,7 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Annual Rent</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="input"></el-input>
+                <el-input placeholder="Please input" v-model="annualrent"></el-input>
               
                </div>
           </el-col>
@@ -79,7 +79,7 @@
                   </div>
                </div>
             </div>
-             
+                
           </el-col>
           <el-col :span="2" :offset="1">
             <div class="grid-content bg-purple-light">
@@ -103,9 +103,10 @@
  export default {
      data(){
          return {
-
+             input:''
          }
-     }
+     },
+     props:['propval','annualrent']
  }
 </script>
 
