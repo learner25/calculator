@@ -423,6 +423,7 @@
            LegalFees:0,
            LegalFeesPercentage:0.075,
            AgencyFees:1,
+           
            unit:'Sq Meters',
             options: [{
           value: 'Sq Meters',
