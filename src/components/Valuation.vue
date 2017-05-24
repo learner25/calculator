@@ -328,7 +328,7 @@
               </el-input>
                     <el-slider
                       v-model="YieldSensitivityIncreamentValue"
-                      :step="0.10"
+                      :step="0.010"
                       :max="1000"
                       >
                     </el-slider>
@@ -340,7 +340,7 @@
           <el-row>
             <!--year 1-->
           <el-col :span="4"><div class="grid-content bg-purple">
-              <el-input placeholder="Please input" v-model="input">
+              <el-input placeholder="Please input" v-model="com_y1_sensitivity">
                 </el-input>
                 </div>
                 </el-col>
@@ -380,12 +380,13 @@
       </el-row>
       <!--row 2-->
          <el-row>
-         <!--property value-->
+         <!--year 6-->
           <el-col :span="4"><div class="grid-content bg-purple">
               <el-input placeholder="Please input" v-model="input">
                 </el-input>
                 </div>
                 </el-col>
+                 <!--year 7-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model="input"></el-input>
@@ -394,6 +395,7 @@
                   </div>
                </div>
           </el-col>
+           <!--year 8-->
           <el-col :span="4" :offset="1">
             <div class="grid-content bg-purple">
 
@@ -405,11 +407,13 @@
             </div>
               
           </el-col>
+           <!--year 9-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
                <el-input placeholder="Please input" v-model="propertyValue"></el-input>
             </div>
           </el-col>
+          <!--year 10-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
                <el-input placeholder="Please input" v-model="propertyValue"></el-input>
@@ -499,8 +503,14 @@
                this. com_agency_fees
       },
       com_net_yield(){
-        return this.annualRentValue/this.com_gross+"%";
-      }
+        console.log("annual rent",this.annualRentValue)
+         console.log("gross",this.annualRentValue)
+        return 10000*this.annualRentValue/ (this.propertyValue+ this.com_gross)+"%";
+      },
+       com_y1_sensitivity(){
+         var d = 10000*this.annualRentValue/ (this.propertyValue+ this.com_gross);
+         return d-this.YieldSensitivityIncreamentValue+"%";
+       }
      },
      methods:{
        propvalchng(){
@@ -512,6 +522,7 @@
        areachange(){
          this.$emit('propertyAreainput',this.propertyArea)
        }
+      
      }
  }
 </script>
