@@ -349,7 +349,7 @@
                   </div>
                </div>
             </div>
-             
+              
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
