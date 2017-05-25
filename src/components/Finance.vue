@@ -101,10 +101,10 @@
                Financial Costs
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="com_financial_percent_total"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="com_financial_cost_total">
                   
              </el-input>
          </el-col>
@@ -278,7 +278,20 @@
             },
             com_other_fees(){
                  return (this.OtherFeesPercentageValue*this.com_mortgage_value)/100
+            },
+            com_financial_cost_total(){
+                return this.com_arrangement_fees+
+                       this.com_legal_fees+
+                       this.com_valuation_fees+
+                       this.com_other_fees
+            },
+            com_financial_percent_total(){
+                return parseFloat(this.ArrangeMentFeesPercentageValue)+
+                       parseFloat(this.LegalFeesPercentageValue)+
+                       parseFloat(this.ValuationFeesPercentageValue)+
+                       parseFloat(this.OtherFeesPercentageValue)
             }
+            
         }
     
     }
