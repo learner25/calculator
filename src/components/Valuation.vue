@@ -231,7 +231,9 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Purchaser Cost</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="purchaserCost"></el-input>
+                <el-input placeholder="Please input"
+                 @change="purchaserCostChange"
+                 v-model="purchaserCost"></el-input>
                 <div class="block">
                      
                      
@@ -718,8 +720,10 @@
   
         this.$emit('propertyAreainput', this.propertyArea)
   
-      }
-  
+      },
+     purchaserCostChange(){
+        this.$emit('purchaserCostChange', this.purchaserCost)
+     }
   
   
     }

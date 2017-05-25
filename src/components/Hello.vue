@@ -5,7 +5,11 @@
   
       <el-tab-pane label="Valuation" name="first">
   
-        <valuation @propertyValueinput="setpropertyVal" @annualRentValueinput="setAnnualRentVal" @propertyAreainput="setPropertyArea">
+        <valuation @propertyValueinput="setpropertyVal"
+                   @annualRentValueinput="setAnnualRentVal"
+                    @propertyAreainput="setPropertyArea"
+                    @purchaserCostChange="setpurchaserCost"
+                    >
   
   
   
@@ -15,7 +19,9 @@
   
       <el-tab-pane label="Finance" name="second">
   
-        <finance :propertyValue="propertyVal">
+        <finance :propertyValue="propertyVal"
+                  :purchaserCost="purchaserCost"
+         >
   
   
   
@@ -71,7 +77,8 @@
   
         annualrentVal: 0,
   
-        propertyArea: 0
+        propertyArea: 0,
+        purchaserCost:0
   
       }
   
@@ -101,6 +108,10 @@
   
         this.propertyArea = data;
   
+      },
+      setpurchaserCost(data)
+      {
+        this.purchaserCost=data;
       }
   
     }

@@ -148,7 +148,7 @@
            
          </el-col>
          <el-col :span="6" :offset="7">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="com_equity_required">
                   
              </el-input>
          </el-col>
@@ -193,7 +193,7 @@
 <script>
     export default {
     
-        props: ['propertyValue'],
+        props: ['propertyValue','purchaserCost'],
     
         data() {
     
@@ -290,6 +290,12 @@
                        parseFloat(this.LegalFeesPercentageValue)+
                        parseFloat(this.ValuationFeesPercentageValue)+
                        parseFloat(this.OtherFeesPercentageValue)
+            },
+            com_deposit_required(){
+                return this.propertyValue-this.com_mortgage_value;
+            },
+            com_equity_required(){
+                return this.com_deposit_required+this.com_financial_cost_total+this.purchaserCost;
             }
             
         }
