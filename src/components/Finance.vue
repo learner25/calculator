@@ -41,16 +41,16 @@
     
             <el-col :span="6">
     
-                <el-input placeholder="Please input"></el-input>
+                <el-input placeholder="Please input" v-model="LoanTermYearValue"></el-input>
     
             </el-col>
     
             <el-col :span="6" :offset="1">
     
-                <el-input placeholder="Please input">
-    
+                <el-input placeholder="Please input" v-model=" com_loan_rate_in_year">
+   
                     <template slot="append">Per Year
-</template>
+                        </template>
              </el-input>
          </el-col>
      </el-row>
@@ -176,7 +176,11 @@
                 MortgageValue: 0,
     
                 MortgagePercentageValue: 0,
-    
+
+                LoanTermYearValue:0,
+
+                
+
                 options: [{
     
                     value: 'Option1',
@@ -223,6 +227,9 @@
     
                 return this.MortgageValue;
     
+            },
+            com_loan_rate_in_year(){
+                return this.com_mortgage_value/ this.LoanTermYearValue
             }
     
         }

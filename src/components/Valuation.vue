@@ -538,6 +538,8 @@
         LegalFees: 0,
   
         LegalFeesPercentage: 0.075,
+
+        LoanTermsYearValue:0,
   
         AgencyFees: 1,
   
