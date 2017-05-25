@@ -1,30 +1,56 @@
 <template>
- <div>
-    <!--mortgage-->
-     <el-row>
-         <el-col :span="6">
-             Mortgage(%LTV)
-         </el-col>
-          <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
-         </el-col>
-         <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input"></el-input>
-         </el-col>
-     </el-row>
-      <!--mortgage-->
-
-      <!--long-term-years-->
-      <el-row>
-         <el-col :span="6">
-             Loan Term (years)
-         </el-col>
-          <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
-         </el-col>
-         <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
-                  <template slot="append">Per Year</template>
+    <div>
+    
+        <!--mortgage-->
+    
+        <el-row>
+    
+            <el-col :span="6">
+    
+                Mortgage(%LTV)
+    
+            </el-col>
+    
+            <el-col :span="6">
+    
+                <el-input placeholder="Please input" v-model="MortgagePercentageValue"></el-input>
+    
+            </el-col>
+    
+            <el-col :span="6" :offset="1">
+    
+                <el-input placeholder="Please input" v-model="com_mortgage_value"></el-input>
+    
+            </el-col>
+    
+        </el-row>
+    
+        <!--mortgage-->
+    
+    
+    
+        <!--long-term-years-->
+    
+        <el-row>
+    
+            <el-col :span="6">
+    
+                Loan Term (years)
+    
+            </el-col>
+    
+            <el-col :span="6">
+    
+                <el-input placeholder="Please input"></el-input>
+    
+            </el-col>
+    
+            <el-col :span="6" :offset="1">
+    
+                <el-input placeholder="Please input">
+    
+                    <template slot="append">Per Year
+</template>
              </el-input>
          </el-col>
      </el-row>
@@ -137,37 +163,82 @@
 </template>
 
 <script>
- export default{
-     
-     data(){
-         return{
-                 options: [{
-          value: 'Option1',
-          label: 'Option1'
-        }, {
-          value: 'Option2',
-          label: 'Option2'
-        }, {
-          value: 'Option3',
-          label: 'Option3'
-        }, {
-          value: 'Option4',
-          label: 'Option4'
-        }, {
-          value: 'Option5',
-          label: 'Option5'
-        }],
-         value: ''
-         }
-     }
- }
-
+    export default {
+    
+        props: ['propertyValue'],
+    
+        data() {
+    
+    
+    
+            return {
+    
+                MortgageValue: 0,
+    
+                MortgagePercentageValue: 0,
+    
+                options: [{
+    
+                    value: 'Option1',
+    
+                    label: 'Option1'
+    
+                }, {
+    
+                    value: 'Option2',
+    
+                    label: 'Option2'
+    
+                }, {
+    
+                    value: 'Option3',
+    
+                    label: 'Option3'
+    
+                }, {
+    
+                    value: 'Option4',
+    
+                    label: 'Option4'
+    
+                }, {
+    
+                    value: 'Option5',
+    
+                    label: 'Option5'
+    
+                }],
+    
+                value: ''
+    
+            }
+    
+        },
+    
+        computed: {
+    
+            com_mortgage_value() {
+    
+                this.MortgageValue = this.MortgagePercentageValue * this.propertyValue * .01;
+    
+                return this.MortgageValue;
+    
+            }
+    
+        }
+    
+    }
 </script>
 <style>
-.el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
+    .el-row {
+    
+        margin-bottom: 20px;
+    
+        &:last-child {
+    
+            margin-bottom: 0;
+    
+        }
+    
     }
-  }
 </style>
