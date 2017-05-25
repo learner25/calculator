@@ -1,152 +1,231 @@
+
+
+
 <template>
- <!--property value-->
-  <div> 
-      <el-row>
-         <!--property value-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Property Value</el-col>
-          <el-col :span="6">
-            <div class="grid-content bg-purple-light">
-                <el-input  v-model="propertyValue" v-on:change="propvalchng()"></el-input>
-                <div class="block">
-                    <el-slider
-                      v-model="propertyValue"
-                       :step="10"
-                      :max="2000"
-                     @change="propvalchng()"
-                      >
-                    </el-slider>
-                     
-                  </div>
-               </div>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <div class="grid-content bg-purple">
-
-              <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" 
-                 v-model="perUnit"
-                 :value="perUnit"
-                   disabled
-                 ></el-input>
-                <div class="block">
-                    <el-slider
-                      v-model="value8"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
-                     
-                  </div>
-               </div>
+  <!--property value-->
+  
+  <div>
+  
+    <el-row>
+  
+      <!--property value-->
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple"></div>Property Value</el-col>
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple-light">
+  
+          <el-input v-model="propertyValue" v-on:change="propvalchng()"></el-input>
+  
+          <div class="block">
+  
+            <el-slider v-model="propertyValue" :step="10" :max="2000" @change="propvalchng()">
+  
+            </el-slider>
+  
+  
+  
+          </div>
+  
+        </div>
+  
+      </el-col>
+  
+      <el-col :span="6" :offset="1">
+  
+        <div class="grid-content bg-purple">
+  
+  
+  
+          <div class="grid-content bg-purple-light">
+  
+            <el-input placeholder="Please input" v-model="perUnit" :value="perUnit" disabled></el-input>
+  
+            <div class="block">
+  
+              <el-slider v-model="value8" :step="10" :max="2000">
+  
+              </el-slider>
+  
+  
+  
             </div>
-             
-          </el-col>
-          <el-col :span="4">
-            <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+  
+          </div>
+  
+        </div>
+  
+  
+  
+      </el-col>
+  
+      <el-col :span="4">
+  
+        <div class="grid-content bg-purple-light">
+  
+          <el-button type="primary" icon="plus"></el-button>
+  
+        </div>
+  
+      </el-col>
+  
+    </el-row>
+  
+    <!--annual rent-->
+  
+    <el-row>
+  
+      <!--property area-->
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple"></div>Annual Rent</el-col>
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple-light">
+  
+          <el-input placeholder="Please input" @change="annualRentchng()" v-model="annualRentValue"></el-input>
+  
+          <div class="block">
+  
+            <el-slider v-model="annualRentValue" :step="10" :max="2000" @change="annualRentchng()">
+  
+            </el-slider>
+  
+  
+  
+          </div>
+  
+        </div>
+  
+      </el-col>
+  
+      <el-col :span="6" :offset="1">
+  
+        <div class="grid-content bg-purple">
+  
+  
+  
+          <div class="grid-content bg-purple-light">
+  
+            <el-input placeholder="Please input" v-model="anual_rent_perUnit" :value="perUnit" disabled></el-input>
+  
+            <div class="block">
+  
+              <el-slider v-model="value8" :step="10" :max="2000">
+  
+              </el-slider>
+  
+  
+  
             </div>
-          </el-col>
-      </el-row>
-      <!--annual rent-->
-       <el-row>
-         <!--property area-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Annual Rent</el-col>
-          <el-col :span="6">
-            <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input"
-                 @change="annualRentchng()"
-                 v-model="annualRentValue"></el-input>
-                <div class="block">
-                    <el-slider
-                      v-model="annualRentValue"
-                      :step="10"
-                      :max="2000"
-                      @change="annualRentchng()"
-                      >
-                    </el-slider>
-                     
-                  </div>
-               </div>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <div class="grid-content bg-purple">
-
-              <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input"
-                  v-model="anual_rent_perUnit"
-                 :value="perUnit"
-                 disabled
-                ></el-input>
-                <div class="block">
-                    <el-slider
-                      v-model="value8"
-                      :step="10"
-                      :max="2000"
-                      >
-                    </el-slider>
-                     
-                  </div>
-               </div>
-            </div>
-             
-          </el-col>
-          <el-col :span="4">
-            <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
-            </div>
-          </el-col>
-      </el-row>
-   
-         <!--Property Area-->
-       <el-row>
-         <!--property area-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Property Area</el-col>
-          <el-col :span="6">
-            <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" @change="areachange()" v-model="propertyArea"></el-input>
-                <div class="block">
-                    <el-slider
-                      
-                      :step="10"
-                      :max="2000"
-                       @change="areachange()"
-                        v-model="propertyArea"
-                      >
-                    </el-slider>
-                     
-                  </div>
-               </div>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <div class="grid-content bg-purple">
-
-              <div class="grid-content bg-purple-light">
-              
-                 <el-select v-model="unit" placeholder="Select">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                      </el-option>
-                </el-select>
-               </div>
-            </div>
-             
-          </el-col>
-          <el-col :span="4">
-            <div class="grid-content bg-purple-light">
-            
-            </div>
-          </el-col>
-      </el-row>
-       
-       <el-row>
-         <el-collapse accordion>
-          <el-collapse-item name="1">
-    <template slot="title">
-      Purchase Costs  
-    </template>
+  
+          </div>
+  
+        </div>
+  
+  
+  
+      </el-col>
+  
+      <el-col :span="4">
+  
+        <div class="grid-content bg-purple-light">
+  
+          <el-button type="primary" icon="plus"></el-button>
+  
+        </div>
+  
+      </el-col>
+  
+    </el-row>
+  
+  
+  
+    <!--Property Area-->
+  
+    <el-row>
+  
+      <!--property area-->
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple"></div>Property Area</el-col>
+  
+      <el-col :span="6">
+  
+        <div class="grid-content bg-purple-light">
+  
+          <el-input placeholder="Please input" @change="areachange()" v-model="propertyArea"></el-input>
+  
+          <div class="block">
+  
+            <el-slider :step="10" :max="2000" @change="areachange()" v-model="propertyArea">
+  
+            </el-slider>
+  
+  
+  
+          </div>
+  
+        </div>
+  
+      </el-col>
+  
+      <el-col :span="6" :offset="1">
+  
+        <div class="grid-content bg-purple">
+  
+  
+  
+          <div class="grid-content bg-purple-light">
+  
+  
+  
+            <el-select v-model="unit" placeholder="Select">
+  
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+  
+              </el-option>
+  
+            </el-select>
+  
+          </div>
+  
+        </div>
+  
+  
+  
+      </el-col>
+  
+      <el-col :span="4">
+  
+        <div class="grid-content bg-purple-light">
+  
+  
+  
+        </div>
+  
+      </el-col>
+  
+    </el-row>
+  
+  
+  
+    <el-row>
+  
+      <el-collapse accordion>
+  
+        <el-collapse-item name="1">
+  
+          <template slot="title">
+  
+        Purchase Costs
+</template>
           <el-row>
          <!--property value-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Purchaser Cost</el-col>
@@ -305,7 +384,9 @@
   <el-col :span="6"><div class="grid-content bg-purple"><el-input v-model="com_net_yield"></el-input></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> 
     <el-input placeholder="Please input" disabled v-model="input3">
-    <template slot="prepend">YP</template>
+<template slot="prepend">
+  YP
+</template>
   </el-input></div>
   </el-col>
   <el-col :span="6"><div class="grid-content bg-purple"><el-button type="primary" icon="plus"></el-button> </div></el-col>
@@ -313,10 +394,9 @@
      <el-row>
          <el-collapse accordion>
           <el-collapse-item name="1">
-    <template slot="title">
-      Yield Sensitivity
-    
-    </template>
+<template slot="title">
+   Yield Sensitivity
+</template>
         <!--row 1-->
           <el-row>
          <!--property value-->
@@ -324,7 +404,9 @@
           <div class="block">
            <el-col :span="4" :offset="10">
               <el-input v-model="YieldSensitivityIncreamentValue">
-                  <template slot="append">%</template>
+<template slot="append">
+  %
+</template>
               </el-input>
                     <el-slider
                       v-model="YieldSensitivityIncreamentValue"
@@ -429,122 +511,230 @@
 </template>
 
 <script>
- export default {
-     data(){
-         return {
-           value8:8,
-           input:'',
-           input3:'',
-           propertyValue:0,
-           propertyArea:0,
-           annualRentValue:0,
-           NetYield:0,
-           YieldSensitivityIncreamentValue:0,
-           purchaseCostPercentage:1.80,
-           LegalFees:0,
-           LegalFeesPercentage:0.075,
-           AgencyFees:1,
-           
-           unit:'Sq Meters',
-            options: [{
+
+  export default {
+  
+    data() {
+  
+      return {
+  
+        value8: 8,
+  
+        input: '',
+  
+        input3: '',
+  
+        propertyValue: 0,
+  
+        propertyArea: 0,
+  
+        annualRentValue: 0,
+  
+        NetYield: 0,
+  
+        YieldSensitivityIncreamentValue: 0,
+  
+        purchaseCostPercentage: 1.80,
+  
+        LegalFees: 0,
+  
+        LegalFeesPercentage: 0.075,
+  
+        AgencyFees: 1,
+  
+        unit: 'Sq Meters',
+  
+        options: [{
+  
           value: 'Sq Meters',
+  
           label: 'Sq Meters'
+  
         }, {
+  
           value: 'Sq Feet',
+  
           label: 'Sq Feet'
-        },
-        ],
+  
+        }, ],
+  
         value: ''
-         }
-     },
-      
-     computed:{
-      
-       comp_ps_properVal(){
-         if(this.__ispa===true){
-            
-            return this.propertyValue / this.propertyArea;
-         }
-         else 
+  
+      }
+  
+    },
+  
+  
+  
+    computed: {
+  
+  
+  
+      comp_ps_properVal() {
+  
+        if (this.__ispa === true) {
+  
+  
+  
+          return this.propertyValue / this.propertyArea;
+  
+        } else
+  
           return 0;
-       },
-         comp_ps_annualRent(){
-            if(this.__ispa)
-             return this.annualRentValue/ this.propertyArea;
-           else
-           return 0;
-       },
-      comp_ps_property_value(){
-        return 0;
+  
       },
-        perUnit(){
-          return this.comp_ps_properVal+' $'+this.unit;
-      },
-        anual_rent_perUnit(){
-          return this.comp_ps_annualRent+' $'+this.unit;
-      },
-      __ispa(){
-        if(this.propertyArea!==undefined || this.propertyArea!=null ||this.propertyArea!=0)
-             return true;
+  
+      comp_ps_annualRent() {
+  
+        if (this.__ispa)
+  
+          return this.annualRentValue / this.propertyArea;
+  
         else
-         return false;
+  
+          return 0;
+  
       },
-      purchaserCost(){
-        return this.propertyValue*this.purchaseCostPercentage*.01;
+  
+      comp_ps_property_value() {
+  
+        return 0;
+  
       },
-      com_legal_fees(){
-        return  this.propertyValue*this.LegalFeesPercentage*.1;
+  
+      perUnit() {
+  
+        return this.comp_ps_properVal + ' $' + this.unit;
+  
       },
-      com_agency_fees(){
-        return this.propertyValue*.01*1;
+  
+      anual_rent_perUnit() {
+  
+        return this.comp_ps_annualRent + ' $' + this.unit;
+  
       },
-      com_gross(){
-        return this.com_legal_fees+
-               this. com_agency_fees+
-               this. com_agency_fees
+  
+      __ispa() {
+  
+        if (this.propertyArea !== undefined || this.propertyArea != null || this.propertyArea != 0)
+  
+          return true;
+  
+        else
+  
+          return false;
+  
       },
-      com_net_yield(){
-        console.log("annual rent",this.annualRentValue)
-         console.log("gross",this.propertyValue+ this.com_gross)
-        return 100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)))+"%";
+  
+      purchaserCost() {
+  
+        return this.propertyValue * this.purchaseCostPercentage * .01;
+  
       },
-       com_y1_sensitivity(){
-         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
-         return d-2*this.YieldSensitivityIncreamentValue+"%";
-       },
-        com_y2_sensitivity(){
-         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
-         return d-this.YieldSensitivityIncreamentValue+"%";
-       },
-        com_y4_sensitivity(){
-         var d = 100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
-         return d+this.YieldSensitivityIncreamentValue+"%";
-       },
-        com_y5_sensitivity(){
-         var d =  100*(this.annualRentValue/ (parseFloat(this.propertyValue)+parseFloat(this.com_gross)));
-         return d+2*this.YieldSensitivityIncreamentValue+"%";
-       },
-     },
-     methods:{
-       propvalchng(){
-         this.$emit('propertyValueinput',this.propertyValue)
-       },
-        annualRentchng(){
-         this.$emit('annualRentValueinput',this.annualRentValue)
-       },
-       areachange(){
-         this.$emit('propertyAreainput',this.propertyArea)
-       }
-      
-     }
- }
+  
+      com_legal_fees() {
+  
+        return this.propertyValue * this.LegalFeesPercentage * .1;
+  
+      },
+  
+      com_agency_fees() {
+  
+        return this.propertyValue * .01 * 1;
+  
+      },
+  
+      com_gross() {
+  
+        return this.com_legal_fees +
+  
+          this.com_agency_fees +
+  
+          this.com_agency_fees
+  
+      },
+  
+      com_net_yield() {
+  
+        console.log("annual rent", this.annualRentValue)
+  
+        console.log("gross", this.propertyValue + this.com_gross)
+  
+        return 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross))) + "%";
+  
+      },
+  
+      com_y1_sensitivity() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+        return d - 2 * this.YieldSensitivityIncreamentValue + "%";
+  
+      },
+  
+      com_y2_sensitivity() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+        return d - this.YieldSensitivityIncreamentValue + "%";
+  
+      },
+  
+      com_y4_sensitivity() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+        return d + this.YieldSensitivityIncreamentValue + "%";
+  
+      },
+  
+      com_y5_sensitivity() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+        return d + 2 * this.YieldSensitivityIncreamentValue + "%";
+  
+      },
+  
+    },
+  
+    methods: {
+  
+      propvalchng() {
+  
+        this.$emit('propertyValueinput', this.propertyValue)
+  
+      },
+  
+      annualRentchng() {
+  
+        this.$emit('annualRentValueinput', this.annualRentValue)
+  
+      },
+  
+      areachange() {
+  
+        this.$emit('propertyAreainput', this.propertyArea)
+  
+      }
+  
+  
+  
+    }
+  
+  }
 </script>
 
 <style scoped>
   .el-row {
+  
     margin-bottom: 20px;
+  
     &:last-child {
+  
       margin-bottom: 0;
+  
     }
+  
   }
 </style>
