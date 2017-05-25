@@ -109,6 +109,34 @@
              </el-input>
          </el-col>
      </el-row>
+     <el-row>
+         <el-col :span="10"  :offset="2">
+         <el-col :span="4">Arrangement Fees</el-col>
+         <el-col :span="4" :offset="4"><el-input v-model="ArrangeMentFeesPercentageValue"></el-input></el-col>
+         <el-col :span="4" :offset="1"><el-input v-model="com_arrangement_fees"></el-input></el-col>
+        </el-col>
+         
+          <el-col :span="10" >
+         <el-col :span="4">Legal Fees</el-col>
+         <el-col :span="4" :offset="4"><el-input v-model="LegalFeesPercentageValue"></el-input></el-col>
+         <el-col :span="4" :offset="1"><el-input v-model="com_legal_fees"></el-input></el-col>
+        </el-col>
+     </el-row>
+
+    <el-row>
+         <el-col :span="10"  :offset="2">
+         <el-col :span="4">Valuation Fees</el-col>
+         <el-col :span="4" :offset="4"><el-input v-model="ValuationFeesPercentageValue"></el-input></el-col>
+         <el-col :span="4" :offset="1"><el-input v-model="com_valuation_fees"></el-input></el-col>
+        </el-col>
+         
+          <el-col :span="10" >
+         <el-col :span="4">Other Fees</el-col>
+         <el-col :span="4" :offset="4"><el-input v-model="OtherFeesPercentageValue"></el-input></el-col>
+         <el-col :span="4" :offset="1"><el-input v-model="com_other_fees"></el-input></el-col>
+        </el-col>
+     </el-row>
+
       <!--financial-->
 
         <!--Required entry-->
@@ -172,6 +200,8 @@
     
     
             return {
+
+                ArrangeMentFeesPercentageValue:0,
     
                 InterestRateValue:0,
                 
@@ -180,8 +210,9 @@
                 MortgagePercentageValue: 0,
 
                 LoanTermYearValue:0,
-
-                
+                ValuationFeesPercentageValue:0,
+                 LegalFeesPercentageValue:0,
+                OtherFeesPercentageValue:0,
 
                 options: [{
     
@@ -235,8 +266,19 @@
             },
             com_interest_rate_per_year(){
                 return (this.InterestRateValue*this.com_mortgage_value)/100
+            },
+            com_arrangement_fees(){
+                return (this.ArrangeMentFeesPercentageValue*this.com_mortgage_value)/100
+            },
+             com_legal_fees(){
+                return (this.LegalFeesPercentageValue*this.com_mortgage_value)/100
+            },
+            com_valuation_fees(){
+                 return (this.ValuationFeesPercentageValue*this.com_mortgage_value)/100
+            },
+            com_other_fees(){
+                 return (this.OtherFeesPercentageValue*this.com_mortgage_value)/100
             }
-            
         }
     
     }
