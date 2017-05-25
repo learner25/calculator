@@ -47,7 +47,7 @@
     
             <el-col :span="6" :offset="1">
     
-                <el-input placeholder="Please input" v-model=" com_loan_rate_in_year">
+                <el-input placeholder="Please input" v-model="com_loan_rate_in_year">
    
                     <template slot="append">Per Year
                         </template>
@@ -57,7 +57,7 @@
       <!--long-term-years-->
       
       <!--Capital-->
-      <el-row>
+      <el-row> 
          <el-col :span="6">
               <el-select v-model="value" placeholder="Select">
                         <el-option
@@ -69,10 +69,10 @@
                 </el-select>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="MortgagePercentageValue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="com_mortgage_value">
                   
              </el-input>
          </el-col>
@@ -85,10 +85,10 @@
                interest rate
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="com_interest_rate_per_year">
                   
              </el-input>
          </el-col>
@@ -173,6 +173,8 @@
     
             return {
     
+                InterestRateValue:0,
+                
                 MortgageValue: 0,
     
                 MortgagePercentageValue: 0,
@@ -230,8 +232,11 @@
             },
             com_loan_rate_in_year(){
                 return this.com_mortgage_value/ this.LoanTermYearValue
+            },
+            com_interest_rate_per_year(){
+                return (this.InterestRateValue*this.com_mortgage_value)/100
             }
-    
+            
         }
     
     }
