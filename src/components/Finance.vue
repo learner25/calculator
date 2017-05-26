@@ -142,7 +142,7 @@
         <!--Required entry-->
       <el-row>
          <el-col :span="6">
-              Required Entity
+              Required Equity
          </el-col>
           <el-col :span="6">
            
@@ -158,13 +158,13 @@
            <!--Equity Return  before loan repayment-->
       <el-row>
          <el-col :span="6">
-              Equity Return
+              Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input v-model="com_equity_return_before_loan">
                   
              </el-input>
          </el-col>
@@ -174,13 +174,13 @@
    <!--Equity Return after loan payment-->
       <el-row>
          <el-col :span="6">
-              Equity Return
+              Equity Return <figcaption><small>after loans repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="com_equity_return_after_loan">
                   
              </el-input>
          </el-col>
@@ -193,7 +193,7 @@
 <script>
     export default {
     
-        props: ['propertyValue','purchaserCost'],
+        props: ['propertyValue','purchaserCost','annualRent'],
     
         data() {
     
@@ -300,7 +300,18 @@
             com_equity_required(){
                 console.log('purchaser cost in com equity ',this.purchaseCost)
                 return this.com_deposit_required+this.com_financial_cost_total+this.purchaserCost;
-            }
+            },
+            
+            com_equity_return_before_loan(){
+                return Math.abs(this.com_interest_rate_per_year-this.annualRent)
+            },
+            com_equity_return_after_loan(){
+                return Math.abs(this.com_interest_rate_per_year-this.annualRent)
+            },
+            com_equity_return_percentage_before_loan(){
+                return this.com_equity_return_before_loan/ this.com_equity_required*100
+            },
+
             
         }
     
