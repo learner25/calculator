@@ -385,7 +385,7 @@
   <el-col :span="6"><div class="grid-content bg-purple">Net Yield</div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"><el-input v-model="com_net_yield"></el-input></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> 
-    <el-input placeholder="Please input" disabled v-model="input3">
+    <el-input placeholder="Please input" v-model="com_net_yield_yp" disabled>
 <template slot="prepend">
   YP
 </template>
@@ -665,6 +665,15 @@
         console.log("gross", this.propertyValue + this.com_gross)
   
         return 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross))) + "%";
+  
+      },
+       com_net_yield_yp() {
+  
+        console.log("annual rent", this.annualRentValue)
+  
+        console.log("gross", this.propertyValue + this.com_gross)
+  
+        return ( (parseFloat(this.propertyValue) + parseFloat(this.com_gross))/ this.annualRentValue) + "%";
   
       },
   
