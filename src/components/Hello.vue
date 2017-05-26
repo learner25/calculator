@@ -21,6 +21,7 @@
   
         <finance :propertyValue="propertyVal"
                   :purchaserCost="purchaserCost"
+                  :annualRent="annualrentVal"
          >
   
   
@@ -59,7 +60,8 @@
   
       valuation,
   
-      goal
+      goal,
+       
   
     },
   
