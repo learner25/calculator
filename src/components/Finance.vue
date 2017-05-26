@@ -55,7 +55,48 @@
          </el-col>
      </el-row>
       <!--long-term-years-->
-      
+        <el-row>
+         <el-col :span="6">
+               Loan Terms in Years
+         </el-col>
+          <el-col :span="13">
+             <el-collapse  accordion>
+                 <el-collapse-item title="show">
+                    <div>
+                           <el-table
+                                    :data="tableData2"
+                                    style="width: 100%"
+                                    
+                                   >
+                                     <el-table-column
+                                         prop="mark"
+                                         label="year 2 "
+                                         width="180">
+                                    </el-table-column>
+                                     
+                                    <el-table-column
+                                         prop="date"
+                                         label="year 1 "
+                                         width="180">
+                                    </el-table-column>
+                                    
+
+                                    <el-table-column
+                                         prop="name"
+                                         label="year 2 "
+                                         width="180">
+                                     </el-table-column>
+                                      <el-table-column
+                                       prop="address"
+                                       label="year 3">
+                                    </el-table-column>
+                          </el-table>
+                    </div>  
+                 </el-collapse-item>
+             </el-collapse>
+         </el-col>
+     
+     </el-row>
       <!--Capital-->
       <el-row> 
          <el-col :span="6">
@@ -213,7 +254,31 @@
                 ValuationFeesPercentageValue:0,
                  LegalFeesPercentageValue:0,
                 OtherFeesPercentageValue:0,
-
+                tableData2:  [{
+                        date: 'xxxxxx',
+                        name: 'xxxxxxx',
+                        address: 'xxxxxxx',
+                        year:'xxxxxxx',
+                        mark:'Interest'
+                        }, 
+                        {
+                        date: 'xxxxxxx',
+                        name: 'xxxxxxx',
+                        address: 'xxxxxxx',
+                        mark:'Loan'
+                        }, 
+                        {
+                        date: 'xxxxxxx',
+                        name: 'xxxxxxx',
+                        address: 'xxxxxxx',
+                         mark:'Total'
+                        },
+                         {
+                        date: 'xxxxxxx',
+                        name: 'xxxxxxx',
+                        address: 'xxxxxxx',
+                        mark:'Capital'
+                        }],
                 options: [{
     
                     value: 'Option1',
