@@ -226,19 +226,22 @@
     
                     label: 'Option2'
     
-                }, {
+                },
+                 {
     
                     value: 'Option3',
     
                     label: 'Option3'
     
-                }, {
+                }, 
+                {
     
                     value: 'Option4',
     
                     label: 'Option4'
     
-                }, {
+                }, 
+                {
     
                     value: 'Option5',
     
@@ -295,6 +298,7 @@
                 return this.propertyValue-this.com_mortgage_value;
             },
             com_equity_required(){
+                console.log('purchaser cost in com equity ',this.purchaseCost)
                 return this.com_deposit_required+this.com_financial_cost_total+this.purchaserCost;
             }
             
