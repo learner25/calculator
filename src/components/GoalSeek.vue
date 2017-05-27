@@ -81,19 +81,92 @@
             </div>
                 
           </el-col>
-          <el-col :span="2" :offset="1">
-            <div class="grid-content bg-purple-light">
-                <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
-            </div>
-            </div>
-          </el-col>
+          
+           
       </el-row>
+           <el-row>
+    
+            <el-col :span="6">
+    
+                Mortgage(%LTV)
+    
+            </el-col>
+    
+            <el-col :span="6">
+    
+                <el-input placeholder="Please input" v-model="MortgagePercentageValue"></el-input>
+    
+            </el-col>
+    
+            <el-col :span="6" :offset="1">
+    
+                <el-input placeholder="Please input" v-model="com_mortgage_value"></el-input>
+    
+            </el-col>
+    
+        </el-row>
+           <el-row>
+         <el-col :span="6">
+               interest rate
+         </el-col>
+          <el-col :span="6">
+             <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
+         </el-col>
+         <el-col :span="6" :offset="1">
+             <el-input placeholder="Please input" v-model="com_interest_rate_per_year">
+                  
+             </el-input>
+         </el-col>
+     </el-row>
        
-       
-     <el-row>
-         
-       </el-row>
+         <el-row>
+         <el-col :span="6">
+               Interest Cover
+         </el-col>
+          <el-col :span="6">
+             <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
+         </el-col>
+        
+     </el-row>
+      <el-row>
+         <el-col :span="6">
+              Required Equity
+         </el-col>
+          <el-col :span="6">
+           
+         </el-col>
+         <el-col :span="6" :offset="7">
+             <el-input placeholder="Please input" v-model="com_equity_required">
+                  
+             </el-input>
+         </el-col>
+     </el-row>
+        <el-row>
+         <el-col :span="6">
+              Equity Return <figcaption><small>before loan repayment</small></figcaption>
+         </el-col>
+          <el-col :span="6">
+             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+         </el-col>
+         <el-col :span="6" :offset="1">
+             <el-input v-model="com_equity_return_before_loan">
+                  
+             </el-input>
+         </el-col>
+     </el-row>
+       <el-row>
+         <el-col :span="6">
+              Equity Return <figcaption><small>after loan repayment</small></figcaption>
+         </el-col>
+          <el-col :span="6">
+             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+         </el-col>
+         <el-col :span="6" :offset="1">
+             <el-input placeholder="Please input" v-model="com_equity_return_after_loan">
+                  
+             </el-input>
+         </el-col>
+     </el-row>
     </el-row>
    </div>
 

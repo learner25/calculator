@@ -215,7 +215,7 @@
    <!--Equity Return after loan payment-->
       <el-row>
          <el-col :span="6">
-              Equity Return <figcaption><small>after loans repayment</small></figcaption>
+              Equity Return <figcaption><small>after loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
              <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
