@@ -13,13 +13,17 @@
     
             <el-col :span="6">
     
-                <el-input placeholder="Please input" v-model="MortgagePercentageValue"></el-input>
+                <el-input placeholder="Please input" 
+                 @change="mortgage_percentage_change"
+                 v-model="MortgagePercentageValue"></el-input>
     
             </el-col>
     
             <el-col :span="6" :offset="1">
     
-                <el-input placeholder="Please input" v-model="com_mortgage_value"></el-input>
+                <el-input placeholder="Please input"
+                 @change="mortgage_value_change"
+                 v-model="com_mortgage_value"></el-input>
     
             </el-col>
     
@@ -36,7 +40,6 @@
             <el-col :span="6">
     
                 Loan Term (years)
-    
             </el-col>
     
             <el-col :span="6">
@@ -126,10 +129,14 @@
                interest rate
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
+             <el-input placeholder="Please input"
+              @change="interest_rate_percent_changes"
+               v-model="InterestRateValue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input" v-model="com_interest_rate_per_year">
+             <el-input placeholder="Please input"
+              @change="interest_rate_value_changes"
+              v-model="com_interest_rate_per_year">
                   
              </el-input>
          </el-col>
@@ -189,7 +196,9 @@
            
          </el-col>
          <el-col :span="6" :offset="7">
-             <el-input placeholder="Please input" v-model="com_equity_required">
+             <el-input placeholder="Please input"
+              @change="required_equity_change"
+              v-model="com_equity_required">
                   
              </el-input>
          </el-col>
@@ -202,7 +211,9 @@
               Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input"
+              @change="required_equity_rpbl_change"
+              v-model=" com_equity_return_percentage_before_loan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input v-model="com_equity_return_before_loan">
@@ -218,10 +229,14 @@
               Equity Return <figcaption><small>after loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" 
+                @change="required_equity_rpal_change"
+             v-model=" com_equity_return_percentage_before_loan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input" v-model="com_equity_return_after_loan">
+             <el-input placeholder="Please input" 
+               @change="required_equity_rpal_change"
+             v-model="com_equity_return_after_loan">
                   
              </el-input>
          </el-col>
@@ -281,38 +296,25 @@
                         }],
                 options: [{
     
-                    value: 'Option1',
+                    value: 'Interest Only',
     
-                    label: 'Option1'
+                    label: 'Interest Only'
     
                 }, {
     
-                    value: 'Option2',
+                    value: 'Partial Capita',
     
-                    label: 'Option2'
+                    label: 'Partial Capital'
     
                 },
                  {
     
-                    value: 'Option3',
+                    value: 'Full Capital',
     
-                    label: 'Option3'
-    
-                }, 
-                {
-    
-                    value: 'Option4',
-    
-                    label: 'Option4'
+                    label: 'Full Capital'
     
                 }, 
-                {
-    
-                    value: 'Option5',
-    
-                    label: 'Option5'
-    
-                }],
+                 ],
     
                 value: ''
     
