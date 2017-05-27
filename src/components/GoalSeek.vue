@@ -59,7 +59,7 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Net Yield</el-col>
           <el-col :span="3">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="input"></el-input>
+                <el-input placeholder="Please input" v-model="NetYieldPercent"></el-input>
                 <div class="block">
                     
                      
@@ -70,7 +70,7 @@
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                    <el-input placeholder="Please input" v-model="input">
+                    <el-input placeholder="Please input" v-model="NetYieldValue">
                         <template slot="prepend">YP</template>
                     </el-input>
                 <div class="block">
@@ -113,7 +113,7 @@
              <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input" v-model="com_interest_rate_per_year">
+             <el-input placeholder="Please input" v-model="InterestRatePerYear">
                   
              </el-input>
          </el-col>
@@ -124,7 +124,7 @@
                Interest Cover
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model="InterestRateValue"></el-input>
+             <el-input placeholder="Please input" v-model="InterestCoverValue"></el-input>
          </el-col>
         
      </el-row>
@@ -136,7 +136,7 @@
            
          </el-col>
          <el-col :span="6" :offset="7">
-             <el-input placeholder="Please input" v-model="com_equity_required">
+             <el-input placeholder="Please input" v-model="EquityRequiredValue">
                   
              </el-input>
          </el-col>
@@ -146,10 +146,10 @@
               Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" v-model="EquityReturnPercentageBeforeLoan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input v-model="com_equity_return_before_loan">
+             <el-input v-model="EquityReturnBeforeLoanValue">
                   
              </el-input>
          </el-col>
@@ -159,10 +159,10 @@
               Equity Return <figcaption><small>after loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" v-model="EquityReturnPercentageAfterLoanValue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input" v-model="com_equity_return_after_loan">
+             <el-input placeholder="Please input" v-model="EquityReturnAfterLoanValue">
                   
              </el-input>
          </el-col>
@@ -179,7 +179,19 @@
              input:''
          }
      },
-     props:['propval','annualrent']
+     props:[
+            'propval',
+            'annualrent',
+            'NetYieldPercent',
+            'MortgagePercentageValue',
+            'MortgageValue',
+            'InterestRateValue',
+            'EquityReturnPercentageBeforeLoanValue',
+            'EquityReturnBeforeLoanValue',
+            'EquityReturnPercentageAfterLoanValue',
+            'EquityReturnAfterLoanValue',
+             
+           ]
  }
 </script>
 
