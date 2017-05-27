@@ -9,6 +9,7 @@
                    @annualRentValueinput="setAnnualRentVal"
                     @propertyAreainput="setPropertyArea"
                     @purchaserCostChange="setpurchaserCost"
+                    @com_net_yield_change="com_net_yield_change"
                     >
   
   
@@ -92,28 +93,24 @@
   
         this.propertyVal = data;
   
-  
-  
-      },
+     },
   
       setAnnualRentVal(data) {
   
         this.annualrentVal = data;
   
-  
-  
-      },
+     },
   
       setPropertyArea(data) {
-  
-  
-  
-        this.propertyArea = data;
-  
-      },
+       this.propertyArea = data;
+       },
       setpurchaserCost(data)
       {
         this.purchaserCost=data;
+      },
+      com_net_yield_change(data)
+      {
+       console.log(data)
       }
   
     }

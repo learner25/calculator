@@ -382,8 +382,18 @@
   <el-col :span="6"><div class="grid-content bg-purple"> </div></el-col>
 </el-row>
                 <el-row :gutter="20">
-  <el-col :span="6"><div class="grid-content bg-purple">Net Yield</div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"><el-input v-model="com_net_yield"></el-input></div></el-col>
+  <el-col :span="6">
+     <div class="grid-content bg-purple">
+        Net Yield
+        </div>
+        </el-col>
+  <el-col :span="6">
+    <div class="grid-content bg-purple">
+    <el-input v-model="com_net_yield"
+                @change="com_net_yield_change"
+    >
+      </el-input></div>
+      </el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> 
     <el-input placeholder="Please input" v-model="com_net_yield_yp" disabled>
 <template slot="prepend">
@@ -531,7 +541,7 @@
         propertyArea: 0,
   
         annualRentValue: 0,
-  
+        stampDuty:0,
         NetYield: 0,
   
         YieldSensitivityIncreamentValue: 0,
@@ -572,15 +582,11 @@
   
     computed: {
   
-  
-  
-      comp_ps_properVal() {
+     comp_ps_properVal() {
   
         if (this.__ispa === true) {
   
-  
-  
-          return this.propertyValue / this.propertyArea;
+         return this.propertyValue / this.propertyArea;
   
         } else
   
@@ -724,7 +730,11 @@
         this.$emit('annualRentValueinput', this.annualRentValue)
   
       },
-  
+      com_net_yield_change(){
+         console.log('net yield update...',)
+         this.$emit('com_net_yield_change',this.com_net_yield)
+        
+      },
       areachange() {
   
         this.$emit('propertyAreainput', this.propertyArea)
