@@ -391,6 +391,11 @@
            com_interest_rate_per_year:function(newval){
                console.log('loan value on capital',newval)
                  this.$emit('interest_value_changed',newval)
+           },
+           MortgagePercentageValue:function(newval)
+           {
+             console.log('mortgage percent value changed')
+             this.$emit('mortgagePercentValuechanged',newval)
            }
         }
     
