@@ -94,7 +94,7 @@
     
             <el-col :span="6">
     
-                <el-input placeholder="Please input"></el-input>
+                <el-input placeholder="Please input" v-model="mortgagePercent"></el-input>
     
             </el-col>
     
@@ -184,6 +184,7 @@
            'annualrent',
             'NetYieldPercent',
             'mortgage',
+            'mortgagePercent',
             'interestvalue',
             'interestfullvalue',
             'requireEquity',

@@ -30,6 +30,7 @@
                  @required_equity_before_changed="equity_return_before_set"
                  @required_equity_before_value_changed="equity_return_before_value_set"
                  @interest_value_changed="set_interest_full_value"
+                 @mortgagePercentValuechanged="set_mortgage_percent_value"
          >
   
   
@@ -49,6 +50,7 @@
          :requireEquityBefore="equity_return_before"
          :requireEquityBeforeValue="equity_return_before_value"
          :interestfullvalue="interest_full_value"
+         :mortgagePercent = "mortgage_percent"
         ></goal>
   
       </el-tab-pane>
@@ -103,6 +105,7 @@
         equity_return:0,
         equity_return_before:0,
         equity_return_before_value:0,
+        mortgage_percent:0
   
       }
   
@@ -159,6 +162,10 @@
      },
      set_interest_full_value(data){
         this.interest_full_value = data
+     },
+     set_mortgage_percent_value(data)
+     {
+       this.mortgage_percent = data
      }
     }
   
