@@ -202,7 +202,7 @@
               Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" v-model="com_equity_return_percentage_before_loan"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input v-model="com_equity_return_before_loan">
@@ -383,6 +383,14 @@
            com_equity_return_percentage_before_loan:function(newval){
                console.log('equity return loan b4')
                this.$emit('required_equity_before_changed',newval)
+           },
+           com_equity_return_before_loan:function(newval){
+               console.log('equity return loan value b4',newval)
+               this.$emit('required_equity_before_value_changed',newval)
+           },
+           com_interest_rate_per_year:function(newval){
+               console.log('loan value on capital',newval)
+                 this.$emit('interest_value_changed',newval)
            }
         }
     
