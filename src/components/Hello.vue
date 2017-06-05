@@ -10,6 +10,7 @@
                     @propertyAreainput="setPropertyArea"
                     @purchaserCostChange="setpurchaserCost"
                     @com_net_yield_change="com_net_yield_change"
+                    
                     >
   
   
@@ -23,6 +24,10 @@
         <finance :propertyValue="propertyVal"
                   :purchaserCost="purchaserCost"
                   :annualRent="annualrentVal"
+                 @mortgagechange="catchmortgage"
+                 @interestvaluechange="catchinterestvalue"
+                 @required_equity_changed="equity_return_set"
+                 @required_equity_before_changed="equity_return_before_set"
          >
   
   
@@ -33,7 +38,14 @@
   
       <el-tab-pane label="Goal Seek" name="third">
   
-        <goal :propval="propertyVal" :annualrent="annualrentVal"></goal>
+        <goal :propval="propertyVal" 
+        :annualrent="annualrentVal"
+         :NetYieldPercent = "netyield"
+         :mortgage="mortgage"
+         :interestvalue="interestvalue"
+         :requireEquity="equity_return"
+         :requireEquityBefore="equity_return_before"
+        ></goal>
   
       </el-tab-pane>
   
@@ -75,13 +87,16 @@
         input: '',
   
         value8: 8,
-  
+        netyield:0,
         propertyVal: 0,
-  
+        
         annualrentVal: 0,
-  
+        mortgage:0,
         propertyArea: 0,
-        purchaserCost:0
+        purchaserCost:0,
+        interestvalue:0,
+        equity_return:0,
+        equity_return_before:0
   
       }
   
@@ -110,9 +125,27 @@
       },
       com_net_yield_change(data)
       {
-       console.log(data)
-      }
-  
+       this.netyield = data
+      },
+      catchmortgage(data){
+        
+        console.log('mortgage spat')
+         this.mortgage = data
+      },
+      catchinterestvalue(data)
+      {
+        //alert(data)
+        this.interestvalue = data;
+      },
+     equity_return_set(data)
+     {
+       this.equity_return = data;
+     },
+     equity_return_before_set(data)
+     {
+       console.log('equity return before set',data)
+       this.equity_return_before=data
+     }
     }
   
   }

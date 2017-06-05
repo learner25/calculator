@@ -234,7 +234,7 @@
 <script>
     export default {
     
-        props: ['propertyValue','purchaserCost','annualRent'],
+        props: ['propertyValue','purchaserCost','annualRent','interestrate'],
     
         data() {
     
@@ -244,7 +244,7 @@
 
                 ArrangeMentFeesPercentageValue:0,
     
-                InterestRateValue:0,
+               'InterestRateValue':0,
                 
                 MortgageValue: 0,
     
@@ -252,7 +252,7 @@
 
                 LoanTermYearValue:0,
                 ValuationFeesPercentageValue:0,
-                 LegalFeesPercentageValue:0,
+                LegalFeesPercentageValue:0,
                 OtherFeesPercentageValue:0,
                 tableData2:  [{
                         date: 'xxxxxx',
@@ -265,7 +265,7 @@
                         date: 'xxxxxxx',
                         name: 'xxxxxxx',
                         address: 'xxxxxxx',
-                        mark:'Loan'
+                        mark:'Repayment'
                         }, 
                         {
                         date: 'xxxxxxx',
@@ -274,7 +274,7 @@
                          mark:'Total'
                         },
                          {
-                        date: 'xxxxxxx',
+                        date: this.com_mortgage_value,
                         name: 'xxxxxxx',
                         address: 'xxxxxx',
                         mark:'Capital'
@@ -301,12 +301,13 @@
                 }, 
                  ],
     
-                value: ''
+                value: '',
+              
+                }
+            },
     
-            }
-    
-        },
-    
+         
+     
         computed: {
     
             com_mortgage_value() {
@@ -365,6 +366,24 @@
             },
 
             
+        },
+        watch:{
+            com_mortgage_value:function(newvalue){
+               // alert('mortgage')
+                 this.$emit('mortgagechange',newvalue)
+                 
+            },
+             InterestRateValue:function(newval){
+             this.$emit('interestvaluechange',newval)
+           },
+           com_equity_required:function(newval){
+                 console.log('equity return loan')
+               this.$emit('required_equity_changed',newval)
+           },
+           com_equity_return_percentage_before_loan:function(newval){
+               console.log('equity return loan b4')
+               this.$emit('required_equity_before_changed',newval)
+           }
         }
     
     }
