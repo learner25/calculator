@@ -28,6 +28,8 @@
                  @interestvaluechange="catchinterestvalue"
                  @required_equity_changed="equity_return_set"
                  @required_equity_before_changed="equity_return_before_set"
+                 @required_equity_before_value_changed="equity_return_before_value_set"
+                 @interest_value_changed="set_interest_full_value"
          >
   
   
@@ -45,6 +47,8 @@
          :interestvalue="interestvalue"
          :requireEquity="equity_return"
          :requireEquityBefore="equity_return_before"
+         :requireEquityBeforeValue="equity_return_before_value"
+         :interestfullvalue="interest_full_value"
         ></goal>
   
       </el-tab-pane>
@@ -95,8 +99,10 @@
         propertyArea: 0,
         purchaserCost:0,
         interestvalue:0,
+        interest_full_value:0,
         equity_return:0,
-        equity_return_before:0
+        equity_return_before:0,
+        equity_return_before_value:0,
   
       }
   
@@ -145,6 +151,14 @@
      {
        console.log('equity return before set',data)
        this.equity_return_before=data
+     },
+     equity_return_before_value_set(data)
+     {
+       console.log('before value from finance in goal')
+       this.equity_return_before_value = data;
+     },
+     set_interest_full_value(data){
+        this.interest_full_value = data
      }
     }
   

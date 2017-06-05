@@ -113,7 +113,7 @@
              <el-input placeholder="Please input" v-model="interestvalue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="interestfullvalue">
                   
              </el-input>
          </el-col>
@@ -149,7 +149,7 @@
              <el-input placeholder="Please input" v-model="requireEquityBefore"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input>
+             <el-input v-model="requireEquityBeforeValue">
                   
              </el-input>
          </el-col>
@@ -162,7 +162,7 @@
              <el-input placeholder="Please input" v-model="requireEquityBefore"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="requireEquityBeforeValue">
                   
              </el-input>
          </el-col>
@@ -185,9 +185,11 @@
             'NetYieldPercent',
             'mortgage',
             'interestvalue',
+            'interestfullvalue',
             'requireEquity',
             'requireEquityBefore',
-            'requireEquityAfter'
+            'requireEquityAfter',
+             'requireEquityBeforeValue'
            ],
  
  computed:{
