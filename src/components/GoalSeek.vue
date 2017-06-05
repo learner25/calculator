@@ -59,7 +59,7 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Net Yield</el-col>
           <el-col :span="3">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="NetYieldPercent"></el-input>
+                <el-input  v-model="net_yield"></el-input>
                 <div class="block">
                     
                      
@@ -100,7 +100,7 @@
     
             <el-col :span="6" :offset="1">
     
-                <el-input placeholder="Please input"></el-input>
+                <el-input v-model="mortgage"></el-input>
     
             </el-col>
     
@@ -110,7 +110,7 @@
                interest rate
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="interestvalue"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input placeholder="Please input">
@@ -136,7 +136,7 @@
            
          </el-col>
          <el-col :span="6" :offset="7">
-             <el-input placeholder="Please input">
+             <el-input placeholder="Please input" v-model="requireEquity">
                   
              </el-input>
          </el-col>
@@ -146,7 +146,7 @@
               Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="requireEquityBefore"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input>
@@ -159,7 +159,7 @@
               Equity Return <figcaption><small>after loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="requireEquityBefore"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input placeholder="Please input">
@@ -179,10 +179,22 @@
              input:''
          }
      },
-     props:['propval',
+     props:[
+           'propval',
            'annualrent',
             'NetYieldPercent',
-           ]
+            'mortgage',
+            'interestvalue',
+            'requireEquity',
+            'requireEquityBefore',
+            'requireEquityAfter'
+           ],
+ 
+ computed:{
+     net_yield(){
+         return this.NetYieldPercent;
+     }
+ }
  }
 </script>
 

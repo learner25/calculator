@@ -49,10 +49,8 @@
               <el-slider v-model="value8" :step="10" :max="2000">
   
               </el-slider>
-  
-  
-  
-            </div>
+         
+             </div>
   
           </div>
   
@@ -389,9 +387,7 @@
         </el-col>
   <el-col :span="6">
     <div class="grid-content bg-purple">
-    <el-input v-model="com_net_yield"
-                @change="com_net_yield_change"
-    >
+    <el-input v-model="com_net_yield" >
       </el-input></div>
       </el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> 
@@ -732,7 +728,7 @@
       },
       com_net_yield_change(){
          console.log('net yield update...',)
-         this.$emit('com_net_yield_change',this.com_net_yield)
+        
         
       },
       areachange() {
@@ -745,6 +741,11 @@
      }
   
   
+    },
+    watch :{
+      com_net_yield:function(newval){
+           this.$emit('com_net_yield_change',newval)
+      }
     }
   
   }
