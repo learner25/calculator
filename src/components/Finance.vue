@@ -257,7 +257,7 @@
 
                 ArrangeMentFeesPercentageValue:0,
     
-               'InterestRateValue':0,
+               InterestRateValue:0,
                 
                 MortgageValue: 0,
     
@@ -355,27 +355,38 @@
             com_equity_return_percentage_before_loan(){
                 return this.com_equity_return_before_loan/ this.com_equity_required*100
             },
-            com_gen_loan_terms(){
-                return this.gen_loan_terms()
+            com_yearly_payment(){
+               return this.calc_PMT(
+                   this.InterestRateValue*.01,
+                   10,
+                  this.com_mortgage_value
+               )
+            },
+            com_monthly_repayment(){
+                
+                return this.com_yearly_payment/12;
             }
             
         },
         
         methods:{
-           
+           calc_PMT(i,n,p)
+           {
+             return i * p * Math.pow((1 + i), n) / (1 - Math.pow((1 + i), n))*-1;
+           },
+
             gen_loan_terms(){
                 var temp=null;
                 for(let i=1;i<=parseInt(this.LoanTermYearValue);i++){
                       var new_term = {};
                       if(i==1){
-                         temp = this.InterestRateValue*this.com_mortgage_value*.01
+                        
+                       temp = this.InterestRateValue*this.com_mortgage_value*.01
                         new_term.interest =temp;
-                        console.log('years on round',temp)
                       }
                       else{
-                         temp*= this.InterestRateValue*this.com_mortgage_value*.01;
+                         temp= this.InterestRateValue*this.com_mortgage_value*.01;
                           new_term.interest =temp;
-                           console.log('years on round',temp)
                       }
                      new_term.name = '  year '+i+'  ';
                      
@@ -394,7 +405,12 @@
                  this.$emit('mortgagechange',newvalue)
               },
              InterestRateValue:function(newval){
-             this.$emit('interestvaluechange',newval)
+                  this.tableData2 = []
+               console.log(newval)
+               if(newval>0)
+               this.gen_loan_terms();
+               console.log('yearly payment',parseInt(this.com_yearly_payment))
+               this.$emit('interestvaluechange',newval)
            },
            com_equity_required:function(newval){
                  console.log('equity return loan')
@@ -417,12 +433,12 @@
              console.log('mortgage percent value changed')
              this.$emit('mortgagePercentValuechanged',newval)
            },
-           LoanTermYearValue:(newval)=>
+           LoanTermYearValue:function(newval)
            {
                this.tableData2 = []
                console.log(newval)
                if(newval>0)
-                 this.com_gen_loan_terms();
+                 this.gen_loan_terms();
                  
            }
            ,
@@ -437,15 +453,17 @@
                      }
                }
            },
-           InterestRateValue:function(newval)
-           {
-                return com_gen_loan_terms();
-           }
+            
         }
     
     }
 </script>
 <style>
+
+  .el-collapse-item__content{
+      overflow-x:auto;
+  }
+
     .el-row {
     
         margin-bottom: 20px;
