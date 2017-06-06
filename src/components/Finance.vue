@@ -370,14 +370,26 @@
         },
         
         methods:{
+            //copied from
            calc_PMT(i,n,p)
            {
              return i * p * Math.pow((1 + i), n) / (1 - Math.pow((1 + i), n))*-1;
            },
 
             gen_loan_terms(){
+                let interest=this.InterestRateValue * this.com_mortgage_value*.01
+                let repayment=parseInt(this.com_yearly_payment)-parseInt(this.com_interest_rate_per_year)
+                let total=interest+repayment
+                let init_term = {
+                    interest ,
+                    repayment,
+                    total,
+                    capital:this.com_mortgage_value-repayment
+                }
+                this.tableData2.push(init_term)
+                console.log(init_term)
                 var temp=null;
-                for(let i=1;i<=parseInt(this.LoanTermYearValue);i++){
+                for(let i=2;i<=parseInt(this.LoanTermYearValue);i++){
                       var new_term = {};
                       if(i==1){
                         
@@ -385,8 +397,8 @@
                         new_term.interest =temp;
                       }
                       else{
-                         temp= this.InterestRateValue*this.com_mortgage_value*.01;
-                          new_term.interest =temp;
+                         temp *= this.InterestRateValue*.01;
+                          new_term.interest =parseInt(temp);
                       }
                      new_term.name = '  year '+i+'  ';
                      
@@ -395,6 +407,7 @@
                      new_term.total = i*21+300;
                      new_term.capital = i*20+100;
                      this.tableData2.push(new_term)
+                     console.log(this.tableData2)
                 }
             },
              
