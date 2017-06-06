@@ -10,7 +10,7 @@
                     @propertyAreainput="setPropertyArea"
                     @purchaserCostChange="setpurchaserCost"
                     @com_net_yield_change="com_net_yield_change"
-                    
+                    @net_yield_yp_change="yp_change"
                     >
   
   
@@ -31,6 +31,7 @@
                  @required_equity_before_value_changed="equity_return_before_value_set"
                  @interest_value_changed="set_interest_full_value"
                  @mortgagePercentValuechanged="set_mortgage_percent_value"
+                 
          >
   
   
@@ -42,7 +43,7 @@
       <el-tab-pane label="Goal Seek" name="third">
   
         <goal :propval="propertyVal" 
-        :annualrent="annualrentVal"
+         :annualrent="annualrentVal"
          :NetYieldPercent = "netyield"
          :mortgage="mortgage"
          :interestvalue="interestvalue"
@@ -51,6 +52,7 @@
          :requireEquityBeforeValue="equity_return_before_value"
          :interestfullvalue="interest_full_value"
          :mortgagePercent = "mortgage_percent"
+         :yp="yp_val"
         ></goal>
   
       </el-tab-pane>
@@ -95,7 +97,7 @@
         value8: 8,
         netyield:0,
         propertyVal: 0,
-        
+        yp_val:0,
         annualrentVal: 0,
         mortgage:0,
         propertyArea: 0,
@@ -124,7 +126,10 @@
         this.annualrentVal = data;
   
      },
-  
+      yp_change(data){
+           console.log('yp...',data)
+           this.yp_val = data
+      },
       setPropertyArea(data) {
        this.propertyArea = data;
        },

@@ -66,11 +66,11 @@
                   </div>
                </div>
           </el-col>
-          <el-col :span="2" :offset="1">
+          <el-col :span="4" >
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                    <el-input placeholder="Please input">
+                    <el-input placeholder="Please input" v-model="yp" >
                         <template slot="prepend">YP</template>
                     </el-input>
                 <div class="block">
@@ -190,7 +190,8 @@
             'requireEquity',
             'requireEquityBefore',
             'requireEquityAfter',
-             'requireEquityBeforeValue'
+             'requireEquityBeforeValue',
+             'yp'
            ],
  
  computed:{

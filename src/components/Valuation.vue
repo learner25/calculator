@@ -527,31 +527,19 @@
       return {
   
         value8: 8,
-  
         input: '',
-  
         input3: '',
-  
         propertyValue: 0,
-  
         propertyArea: 0,
-  
         annualRentValue: 0,
         stampDuty:0,
         NetYield: 0,
-  
         YieldSensitivityIncreamentValue: 0,
-  
         purchaseCostPercentage: 1.80,
-  
         LegalFees: 0,
-  
         LegalFeesPercentage: 0.075,
-
         LoanTermsYearValue:0,
-  
         AgencyFees: 1,
-  
         unit: 'Sq Meters',
   
         options: [{
@@ -745,6 +733,9 @@
     watch :{
       com_net_yield:function(newval){
            this.$emit('com_net_yield_change',newval)
+      },
+      com_net_yield_yp:function(newval){
+        this.$emit('net_yield_yp_change',newval)
       }
     }
   

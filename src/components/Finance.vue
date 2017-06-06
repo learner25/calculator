@@ -63,34 +63,47 @@
              <el-collapse  accordion>
                  <el-collapse-item title="show">
                     <div>
-                           <el-table
-                                    :data="tableData2"
-                                    style="width: 100%"
-                                    
-                                   >
-                                     <el-table-column
-                                         prop="mark"
-                                         label="year 2 "
-                                         width="180">
-                                    </el-table-column>
-                                     
-                                    <el-table-column
-                                         prop="date"
-                                         label="year 1 "
-                                         width="180">
-                                    </el-table-column>
-                                    
+                          <el-col :span="4">
 
-                                    <el-table-column
-                                         prop="name"
-                                         label="year 2 "
-                                         width="180">
-                                     </el-table-column>
-                                      <el-table-column
-                                       prop="address"
-                                       label="year 3">
-                                    </el-table-column>
-                          </el-table>
+                              <table class="el-table" style="margin-top:43px">
+                                  <tr class="el-table__row--stripped">
+                                   
+                                  </tr>
+                                   <tr class="el-table__row--stripped">
+                                    <td>Interest</td>
+                                  </tr>
+                                  <tr class="el-table__row--stripped">
+                                   <td>Loan</td>
+                                  </tr>
+                                   <tr class="el-table__row--stripped">
+                                  <td>Total</td>
+                                  </tr>
+                                   <tr class="el-table__row--stripped">
+                                   <td>Capital</td>
+                                  </tr>
+                              </table>
+                          </el-col>
+                          <el-col :span="4">
+                           <table  class="el-table">
+                               
+                               <tr>
+                                    <th class="el-table__row" v-for="i in tableData2" >{{i.name}}</th>
+                               </tr>
+                                <tr class="el-table__row--stripped">
+                                  <td v-for="j in tableData2">{{j.interest}}</td>
+                                  </tr>
+                                  <tr class="el-table__row--stripped">
+                                  <td v-for="j in tableData2">{{j.repayment}}</td>
+                                  </tr>
+                                   <tr class="el-table__row--stripped">
+                                  <td v-for="j in tableData2">{{j.total}}</td>
+                                  </tr>
+                                    <tr class="el-table__row--stripped">
+                                  <td v-for="j in tableData2">{{j.capital}}</td>
+                                  </tr>
+
+                           </table>
+                          </el-col>
                     </div>  
                  </el-collapse-item>
              </el-collapse>
@@ -254,31 +267,8 @@
                 ValuationFeesPercentageValue:0,
                 LegalFeesPercentageValue:0,
                 OtherFeesPercentageValue:0,
-                tableData2:  [{
-                        date: 'xxxxxx',
-                        name: 'xxxxxxx',
-                        address: 'xxxxxxx',
-                        year:'xxxxxxx',
-                        mark:'Interest'
-                        }, 
-                        {
-                        date: 'xxxxxxx',
-                        name: 'xxxxxxx',
-                        address: 'xxxxxxx',
-                        mark:'Repayment'
-                        }, 
-                        {
-                        date: 'xxxxxxx',
-                        name: 'xxxxxxx',
-                        address: 'xxxxxxx',
-                         mark:'Total'
-                        },
-                         {
-                        date: this.com_mortgage_value,
-                        name: 'xxxxxxx',
-                        address: 'xxxxxx',
-                        mark:'Capital'
-                        }],
+                
+                tableData2:  [],
                 options: [{
     
                     value: 'Interest Only',
@@ -302,8 +292,9 @@
                  ],
     
                 value: '',
-              
+                
                 }
+
             },
     
          
@@ -364,15 +355,44 @@
             com_equity_return_percentage_before_loan(){
                 return this.com_equity_return_before_loan/ this.com_equity_required*100
             },
-
+            com_gen_loan_terms(){
+                return this.gen_loan_terms()
+            }
             
+        },
+        
+        methods:{
+           
+            gen_loan_terms(){
+                var temp=null;
+                for(let i=1;i<=parseInt(this.LoanTermYearValue);i++){
+                      var new_term = {};
+                      if(i==1){
+                         temp = this.InterestRateValue*this.com_mortgage_value*.01
+                        new_term.interest =temp;
+                        console.log('years on round',temp)
+                      }
+                      else{
+                         temp*= this.InterestRateValue*this.com_mortgage_value*.01;
+                          new_term.interest =temp;
+                           console.log('years on round',temp)
+                      }
+                     new_term.name = '  year '+i+'  ';
+                     
+                     //console.log(new_term.interest)
+                     new_term.repayment = i*2+300;
+                     new_term.total = i*21+300;
+                     new_term.capital = i*20+100;
+                     this.tableData2.push(new_term)
+                }
+            },
+             
         },
         watch:{
             com_mortgage_value:function(newvalue){
                // alert('mortgage')
                  this.$emit('mortgagechange',newvalue)
-                 
-            },
+              },
              InterestRateValue:function(newval){
              this.$emit('interestvaluechange',newval)
            },
@@ -396,6 +416,30 @@
            {
              console.log('mortgage percent value changed')
              this.$emit('mortgagePercentValuechanged',newval)
+           },
+           LoanTermYearValue:(newval)=>
+           {
+               this.tableData2 = []
+               console.log(newval)
+               if(newval>0)
+                 this.com_gen_loan_terms();
+                 
+           }
+           ,
+           tableData2:function(newval){
+               if("length" in newval)
+               {
+                   console.log('length in newval','length' in newval)
+                   if(newval.length>0)
+                     {
+                         console.log('table fill up...')
+                         
+                     }
+               }
+           },
+           InterestRateValue:function(newval)
+           {
+                return com_gen_loan_terms();
            }
         }
     
