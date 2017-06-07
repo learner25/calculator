@@ -90,7 +90,7 @@
                                     <th class="el-table__row" v-for="i in tableData2" >{{i.name}}</th>
                                </tr>
                                 <tr class="el-table__row--stripped">
-                                  <td v-for="j in tableData2">{{j.interest}}</td>
+                                  <td v-for="j in tableData2">{{j.loan}}</td>
                                   </tr>
                                   <tr class="el-table__row--stripped">
                                   <td v-for="j in tableData2">{{j.repayment}}</td>
@@ -302,12 +302,9 @@
         computed: {
     
             com_mortgage_value() {
-    
-                this.MortgageValue = this.MortgagePercentageValue * this.propertyValue * .01;
-    
-                return this.MortgageValue;
-    
-            },
+              this.MortgageValue = this.MortgagePercentageValue * this.propertyValue * .01;
+                 return this.MortgageValue;
+                },
             com_loan_rate_in_year(){
                 return this.com_mortgage_value/ this.LoanTermYearValue
             },
@@ -363,24 +360,27 @@
                )
             },
             com_monthly_repayment(){
-                
                 return this.com_yearly_payment/12;
             }
             
         },
         
         methods:{
-            //copied from
+            //copied from google
            calc_PMT(i,n,p)
            {
              return i * p * Math.pow((1 + i), n) / (1 - Math.pow((1 + i), n))*-1;
            },
-
+            //out table generator
             gen_loan_terms(){
+                 this.tableData2 = []
+                console.log('pmt fact const',this.PMT_factor)
                 let interest=this.InterestRateValue * this.com_mortgage_value*.01
                 let repayment=parseInt(this.com_yearly_payment)-parseInt(this.com_interest_rate_per_year)
                 let total=interest+repayment
+                 var temp_capital =0
                 let init_term = {
+                    name:'year 1',
                     interest ,
                     repayment,
                     total,
@@ -389,25 +389,35 @@
                 this.tableData2.push(init_term)
                 console.log(init_term)
                 var temp=null;
-                for(let i=2;i<=parseInt(this.LoanTermYearValue);i++){
-                      var new_term = {};
-                      if(i==1){
-                        
-                       temp = this.InterestRateValue*this.com_mortgage_value*.01
-                        new_term.interest =temp;
-                      }
-                      else{
-                         temp *= this.InterestRateValue*.01;
-                          new_term.interest =parseInt(temp);
-                      }
-                     new_term.name = '  year '+i+'  ';
+                for(let i=1;i<=parseInt(this.LoanTermYearValue);i++){
                      
-                     //console.log(new_term.interest)
-                     new_term.repayment = i*2+300;
-                     new_term.total = i*21+300;
-                     new_term.capital = i*20+100;
-                     this.tableData2.push(new_term)
-                     console.log(this.tableData2)
+                    //   if(i==1){
+                    //     //temp = init_term.capital*this.InterestRateValue*this.com_mortgage_value*.01//h66
+                    //     temp = init_term.capital+20
+                    //     init_term.capital =temp;
+                    //     console.log('new temp',temp)
+                    //   }
+                        
+                        // temp *= this.InterestRateValue*this.com_mortgage_value*.01;
+                       var  temp_loan = init_term.capital*this.InterestRateValue *.01;
+                       var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
+                         var temp_capital = init_term.capital - temp_repayment
+                          init_term.loan = parseInt(temp_loan);
+                          init_term.repayment = temp_repayment;
+                          console.log('init capital',parseInt(temp_capital))
+                        //  console.log('init_term.capital',temp_repayment)
+                      
+                         init_term.name = '  year '+i+'  ';
+                         init_term.repayment = parseInt(this.com_yearly_payment);
+                         init_term.capital = parseInt(temp_capital);
+                         init_term.total = total;
+
+                         
+                        //new_term.capital =this.tableData2[i-1].capital*this.InterestRateValue*.01;
+                        var carry=Object.assign({},init_term)
+                        this.tableData2.push(carry)
+                        console.log(this.tableData2)
+                       
                 }
             },
              
