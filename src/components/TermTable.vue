@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-left:80px">
       <el-col :span="4">
                            <table  class="el-table">
                                

@@ -31,7 +31,7 @@
                  @required_equity_before_value_changed="equity_return_before_value_set"
                  @interest_value_changed="set_interest_full_value"
                  @mortgagePercentValuechanged="set_mortgage_percent_value"
-                 
+                 @interest_cover_changed="set_interest_cover"
          >
   
   
@@ -53,6 +53,7 @@
          :interestfullvalue="interest_full_value"
          :mortgagePercent = "mortgage_percent"
          :yp="yp_val"
+         :interestCover = "interest_cover"
         ></goal>
   
       </el-tab-pane>
@@ -107,8 +108,8 @@
         equity_return:0,
         equity_return_before:0,
         equity_return_before_value:0,
-        mortgage_percent:0
-  
+        mortgage_percent:0,
+        interest_cover:0
       }
   
     },
@@ -154,6 +155,11 @@
      equity_return_set(data)
      {
        this.equity_return = data;
+     },
+     set_interest_cover(data)
+     {
+         
+         this.interest_cover = data
      },
      equity_return_before_set(data)
      {

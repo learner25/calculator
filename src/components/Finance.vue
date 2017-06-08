@@ -148,6 +148,17 @@
              </el-input>
          </el-col>
      </el-row>
+         <el-row>
+         <el-col :span="6">
+               interest cover
+         </el-col>
+          <el-col :span="6">
+             <el-input disabled placeholder="Please input" v-model="com_interest_cover">
+                 <template slot="append">%</template>
+             </el-input>
+         </el-col>
+          
+     </el-row>
       <!--interest rate-->
 
        <!--financial will be a collapse-->
@@ -262,7 +273,7 @@
                InterestRateValue:0,
                 
                 MortgageValue: 0,
-    
+                NetAnnualRent:10000,
                 MortgagePercentageValue: 0,
 
                 LoanTermYearValue:0,
@@ -273,20 +284,20 @@
                 tableData2:  [],
                 options: [{
     
-                    value: 'Interest Only',
+                    value: 0,
     
                     label: 'Interest Only'
     
                 }, {
     
-                    value: 'Partial Capita',
+                    value: 1,
     
                     label: 'Partial Capital'
     
                 },
                  {
     
-                    value: 'Full Capital',
+                    value:2,
     
                     label: 'Full Capital'
     
@@ -363,15 +374,19 @@
             },
             com_monthly_repayment(){
                 return this.com_yearly_payment/12;
-            }
+            },
+           com_interest_cover(){
+             var k = 100*this.NetAnnualRent/ parseInt(parseInt(this.com_yearly_payment)-parseInt(this.com_mortgage_value/ this.LoanTermYearValue))
+             return parseInt(k)
+           }
             
         },
         
         methods:{
-            //copied from google
-           calc_PMT(i,n,p)
+           
+           calc_PMT(interest_rate,no_of_payments,present_value)
            {
-             return i * p * Math.pow((1 + i), n) / (1 - Math.pow((1 + i), n))*-1;
+             return interest_rate * present_value * Math.pow((1 +interest_rate), no_of_payments) / (1 - Math.pow((1 + interest_rate), no_of_payments))*-1;
            },
             //out table generator
             gen_loan_terms(){
@@ -452,6 +467,8 @@
            MortgagePercentageValue:function(newval)
            {
              console.log('mortgage percent value changed')
+             console.log('computed interest cover',this.com_interest_cover)
+             this.$emit('interest_cover_changed',this.com_interest_cover)
              this.$emit('mortgagePercentValuechanged',newval)
            },
            LoanTermYearValue:function(newval)
