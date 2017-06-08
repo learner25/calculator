@@ -390,12 +390,13 @@
            },
             //out table generator
             gen_loan_terms(){
-                 this.tableData2 = []
+
+                this.tableData2 = []
                 //console.log('pmt fact const',this.PMT_factor)
                 let interest=this.InterestRateValue * this.com_mortgage_value*.01
                 let repayment=parseInt(this.com_yearly_payment)-parseInt(this.com_interest_rate_per_year)
                 let total=interest+repayment
-                 var temp_capital =0
+                var temp_capital =0
                 let year_1 = {
                       name:'  year 1  ',
                     interest ,
@@ -415,10 +416,9 @@
                 console.log(init_term)
                 var temp=null;
                 for(let i=2;i<=parseInt(this.LoanTermYearValue);i++){
-                  
-                         var  temp_loan = init_term.capital*this.InterestRateValue *.01;
-                         var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
-                         var temp_capital = Math.abs(init_term.capital - temp_repayment)
+                     var  temp_loan = init_term.capital*this.InterestRateValue *.01;
+                     var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
+                      var temp_capital = Math.abs(init_term.capital - temp_repayment)
                           init_term.loan = parseInt(temp_loan);
                           init_term.repayment = Math.abs(parseInt(temp_repayment));
                           console.log('init capital',parseInt(temp_capital))
