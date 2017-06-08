@@ -124,7 +124,9 @@
                Interest Cover
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input"></el-input>
+             <el-input placeholder="Please input" v-model="interestCover">
+                 <template slot="append">%</template>
+             </el-input>
          </el-col>
         
      </el-row>
@@ -186,6 +188,7 @@
             'mortgage',
             'mortgagePercent',
             'interestvalue',
+            'interestCover',
             'interestfullvalue',
             'requireEquity',
             'requireEquityBefore',
