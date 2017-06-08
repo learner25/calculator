@@ -544,13 +544,13 @@
   
         options: [{
   
-          value: 'Sq Meters',
+          value: 0,
   
           label: 'Sq Meters'
   
         }, {
   
-          value: 'Sq Feet',
+          value: 1,
   
           label: 'Sq Feet'
   
@@ -597,8 +597,15 @@
       },
   
       perUnit() {
-  
-        return this.comp_ps_properVal + ' $' + this.unit;
+        if(this.unit==1) {
+         this.propertyArea /=10.76;
+         return this.comp_ps_properVal + ' $' + this.unit;
+        }
+        else {
+           this.propertyArea *=10.76;
+           return (this.comp_ps_properVal *10.76)+ ' $' + this.unit;
+        }
+        
   
       },
   
