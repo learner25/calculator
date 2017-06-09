@@ -319,7 +319,9 @@
                  return this.MortgageValue;
                 },
             com_loan_rate_in_year(){
-                return this.com_mortgage_value/ this.LoanTermYearValue
+               var d =  this.com_mortgage_value/ this.LoanTermYearValue
+               if(!isNaN(d) && isFinite(d)) return d;
+               else return 0;
             },
             com_interest_rate_per_year(){
                 return (this.InterestRateValue*this.com_mortgage_value)/100
@@ -353,17 +355,23 @@
             },
             com_equity_required(){
                 console.log('purchaser cost in com equity ',this.purchaseCost)
-                return this.com_deposit_required+this.com_financial_cost_total+this.purchaserCost;
+               var d = this.com_deposit_required+this.com_financial_cost_total+this.purchaserCost;
+                 if(isFinite(d)||!isNaN(d)) return d;
+                 return 0;
             },
             
             com_equity_return_before_loan(){
-                return Math.abs(this.com_interest_rate_per_year-this.annualRent)
+               var d = Math.abs(this.com_interest_rate_per_year-this.annualRent)
+               if(isFinite(d)||!isNaN(d)) return d;
+                 return 0;
             },
             com_equity_return_after_loan(){
                 return Math.abs(this.com_interest_rate_per_year-this.annualRent)
             },
             com_equity_return_percentage_before_loan(){
-                return this.com_equity_return_before_loan/ this.com_equity_required*100
+               var d = this.com_equity_return_before_loan/ this.com_equity_required*100
+               if(isFinite(d)||!isNaN(d)) return d;
+               return 0;
             },
             com_yearly_payment(){
                return this.calc_PMT(
@@ -377,7 +385,8 @@
             },
            com_interest_cover(){
              var k = 100*this.NetAnnualRent/ parseInt(parseInt(this.com_yearly_payment)-parseInt(this.com_mortgage_value/ this.LoanTermYearValue))
-             return parseInt(k)
+             if(!isNaN(k) || isFinite(k)) return parseInt(k)
+             else return 0;
            }
             
         },
@@ -398,7 +407,7 @@
                 let total=interest+repayment
                 var temp_capital =0
                 let year_1 = {
-                      name:'  year 1  ',
+                    name:'  year 1  ',
                     interest ,
                     repayment,
                     total,
@@ -416,19 +425,18 @@
                 console.log(init_term)
                 var temp=null;
                 for(let i=2;i<=parseInt(this.LoanTermYearValue);i++){
-                     var  temp_loan = init_term.capital*this.InterestRateValue *.01;
-                     var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
-                      var temp_capital = Math.abs(init_term.capital - temp_repayment)
+                          var  temp_loan = init_term.capital*this.InterestRateValue *.01;
+                          var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
+                          var temp_capital = Math.abs(init_term.capital - temp_repayment)
                           init_term.loan = parseInt(temp_loan);
                           init_term.repayment = Math.abs(parseInt(temp_repayment));
                           console.log('init capital',parseInt(temp_capital))
                           init_term.name = '  year '+i+'  ';
-                         //init_term.repayment = parseInt(this.com_yearly_payment);
-                         init_term.capital = parseInt(temp_capital);
-                         init_term.total = total;
-                        var carry=Object.assign({},init_term)
-                        this.tableData2.push(carry)
-                        console.log(this.tableData2)
+                          init_term.capital = parseInt(temp_capital);
+                          init_term.total = total;
+                          var carry=Object.assign({},init_term)
+                          this.tableData2.push(carry)
+                          console.log(this.tableData2)
                        
                 }
                 this.tableData2.splice(1,1)

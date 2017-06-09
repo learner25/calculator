@@ -158,7 +158,7 @@
      },
      set_interest_cover(data)
      {
-         
+        // alert('interest cover',data)
          this.interest_cover = data
      },
      equity_return_before_set(data)
@@ -169,6 +169,7 @@
      equity_return_before_value_set(data)
      {
        console.log('before value from finance in goal')
+       if(isNaN(data)) alert('nan')
        this.equity_return_before_value = data;
      },
      set_interest_full_value(data){

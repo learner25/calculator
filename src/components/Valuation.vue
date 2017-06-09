@@ -568,13 +568,11 @@
   
      comp_ps_properVal() {
   
-        if (this.__ispa === true) {
-  
-         return this.propertyValue / this.propertyArea;
-  
-        } else
-  
-          return 0;
+        if (this.__ispa == true) {
+        var d =   this.propertyValue / this.propertyArea;
+        if(!isNaN(d)&& isFinite(d)) return d;
+         else return 0;
+        } 
   
       },
   
@@ -597,11 +595,16 @@
       },
   
       perUnit() {
-        if(this.unit==1) {
+        if(!this.__ispa)
+        {
+          return 0;
+        }
+       else  if(this.unit=='Sq Meters' && this.__ispa) {
          this.propertyArea /=10.76;
          return this.comp_ps_properVal + ' $' + this.unit;
         }
         else {
+           if(this.__ispa)
            this.propertyArea *=10.76;
            return (this.comp_ps_properVal *10.76)+ ' $' + this.unit;
         }
@@ -610,14 +613,16 @@
       },
   
       anual_rent_perUnit() {
-  
+        if(!isNaN(this.comp_ps_annualRent)&&isFinite(this.comp_ps_annualRent))
         return this.comp_ps_annualRent + ' $' + this.unit;
-  
+        else 
+        return 0;
       },
   
       __ispa() {
   
-        if (this.propertyArea !== undefined || this.propertyArea != null || this.propertyArea != 0)
+        if (this.propertyArea !== undefined || this.propertyArea != null || this.propertyArea != 0||
+          !isNaN(this.propertyArea)||isFinite(this.propertyArea))
   
           return true;
   
@@ -661,8 +666,9 @@
   
         console.log("gross", this.propertyValue + this.com_gross)
   
-        return 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross))) + "%";
-  
+        var d= 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross))) + "%";
+        return d;
+         
       },
        com_net_yield_yp() {
   
@@ -670,8 +676,9 @@
   
         console.log("gross", this.propertyValue + this.com_gross)
   
-        return ( (parseFloat(this.propertyValue) + parseFloat(this.com_gross))/ this.annualRentValue) + "%";
-  
+        var d = ( (parseFloat(this.propertyValue) + parseFloat(this.com_gross))/ this.annualRentValue) + "%";
+         if(isFinite(parseFloat(d))) return d;
+          else return 0;
       },
   
       com_y1_sensitivity() {
