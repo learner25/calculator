@@ -428,6 +428,20 @@
                           var  temp_loan = init_term.capital*this.InterestRateValue *.01;
                           var temp_repayment = parseInt(this.com_yearly_payment)-temp_loan
                           var temp_capital = Math.abs(init_term.capital - temp_repayment)
+                          if(isNaN(temp_capital)) {
+                              temp_capital = 0
+                              };
+                         if(isNaN(temp_repayment)){
+                            
+                              temp_repayment = 0;
+                         }
+                         if(isNaN(temp_loan)) {
+                             temp_loan = 0;
+                             }
+                         if(isNaN( total)){
+                               total = 0;
+                         }
+                              
                           init_term.loan = parseInt(temp_loan);
                           init_term.repayment = Math.abs(parseInt(temp_repayment));
                           console.log('init capital',parseInt(temp_capital))

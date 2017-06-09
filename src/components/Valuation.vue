@@ -184,7 +184,7 @@
   
   
   
-            <el-select v-model="unit" placeholder="Select">
+            <el-select v-model="unit" placeholder="Select" >
   
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
   
@@ -667,7 +667,8 @@
         console.log("gross", this.propertyValue + this.com_gross)
   
         var d= 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross))) + "%";
-        return d;
+         if(isFinite(parseFloat(d))||!isNaN(d)) return d;
+          else return 0;
          
       },
        com_net_yield_yp() {
