@@ -110,7 +110,7 @@
   
           <div class="grid-content bg-purple-light">
   
-            <el-input placeholder="Please input" v-model="anual_rent_perUnit" :value="perUnit" disabled></el-input>
+            <el-input placeholder="Please input" v-model="anual_rent_perUnit"   disabled></el-input>
   
             <div class="block">
   
@@ -184,7 +184,7 @@
   
   
   
-            <el-select v-model="unit" placeholder="Select" >
+            <el-select v-model="unit" placeholder="Select" @change="unitchange">
   
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
   
@@ -540,7 +540,7 @@
         LegalFeesPercentage: 0.075,
         LoanTermsYearValue:0,
         AgencyFees: 1,
-        unit: 'Sq Meters',
+        unit: 0,
   
         options: [{
   
@@ -569,8 +569,10 @@
      comp_ps_properVal() {
   
         if (this.__ispa == true) {
-        var d =   this.propertyValue / this.propertyArea;
-        if(!isNaN(d)&& isFinite(d)) return d;
+      
+        var d = this.propertyValue / this.propertyArea;
+        console.log('d da d',d)
+        if(!isNaN(d) && isFinite(d)) return d;
          else return 0;
         } 
   
@@ -599,21 +601,24 @@
         {
           return 0;
         }
-       else  if(this.unit=='Sq Meters' && this.__ispa) {
+       else  if(this.unit==0) {
+         console.log('per unit area triggerd')
          this.propertyArea /=10.76;
+         this.comp_ps_properVal /=10.76;
          return this.comp_ps_properVal + ' $' + this.unit;
         }
         else {
-           if(this.__ispa)
+           
            this.propertyArea *=10.76;
-           return (this.comp_ps_properVal *10.76)+ ' $' + this.unit;
+          this.comp_ps_properVal*=10.76;
+           return this.comp_ps_properVal + ' $' + this.unit;
         }
         
   
       },
   
       anual_rent_perUnit() {
-        if(!isNaN(this.comp_ps_annualRent)&&isFinite(this.comp_ps_annualRent))
+        if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent))
         return this.comp_ps_annualRent + ' $' + this.unit;
         else 
         return 0;
@@ -627,7 +632,6 @@
           return true;
   
         else
-  
           return false;
   
       },
@@ -672,11 +676,8 @@
          
       },
        com_net_yield_yp() {
-  
         console.log("annual rent", this.annualRentValue)
-  
         console.log("gross", this.propertyValue + this.com_gross)
-  
         var d = ( (parseFloat(this.propertyValue) + parseFloat(this.com_gross))/ this.annualRentValue) + "%";
          if(isFinite(parseFloat(d))) return d;
           else return 0;
@@ -685,8 +686,9 @@
       com_y1_sensitivity() {
   
         var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
-  
-        return d - 2 * this.YieldSensitivityIncreamentValue + "%";
+        var k = Math.abs(d - 2 * this.YieldSensitivityIncreamentValue);
+        if(!isNaN(k)||isFinite(k)) return k+"%";
+        return  0;
   
       },
   
@@ -694,7 +696,11 @@
   
         var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
   
-        return d - this.YieldSensitivityIncreamentValue + "%";
+       var c =  Math.abs(d - this.YieldSensitivityIncreamentValue) ;
+       if(!isNaN(c)||isFinite(c))
+        return c+ "%";
+
+       return 0;
   
       },
   
@@ -702,7 +708,9 @@
   
         var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
   
-        return d + this.YieldSensitivityIncreamentValue + "%";
+        var j = Math.abs(d + this.YieldSensitivityIncreamentValue);
+        if(!isNaN(j)||isFinite(j)) return j + "%";
+         return 0;
   
       },
   
@@ -710,14 +718,30 @@
   
         var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
   
-        return d + 2 * this.YieldSensitivityIncreamentValue + "%";
+        var c = Math.abs(d + 2 * this.YieldSensitivityIncreamentValue);
+        if(!isNaN(c)||isFinite(c)) return c + "%";
+         return 0;
   
       },
   
     },
   
     methods: {
-  
+      unitchange(){
+           if(!this.__ispa)
+        {
+          return 0;
+        }
+       else  if(this.unit==0 && this.__ispa) {
+         var p= this.propertyArea /10.76;
+         return this.comp_ps_properVal + ' $' + this.unit;
+        }
+        else {
+           if(this.__ispa)
+           var g = this.propertyArea *10.76;
+           return (this.comp_ps_properVal *10.76)+ ' $' + this.unit;
+        }
+      },
       propvalchng() {
   
         this.$emit('propertyValueinput', this.propertyValue)
