@@ -114,7 +114,7 @@
       <!--Capital-->
       <el-row> 
          <el-col :span="6">
-              <el-select v-model="value" placeholder="Select">
+              <el-select v-model="value" @change="chng" placeholder="Select">
                         <el-option
                         v-for="item in options"
                         :key="item.value"
@@ -392,7 +392,9 @@
         },
         
         methods:{
-           
+           chng(){
+               alert(this.value)
+           },
            calc_PMT(interest_rate,no_of_payments,present_value)
            {
              return interest_rate * present_value * Math.pow((1 +interest_rate), no_of_payments) / (1 - Math.pow((1 + interest_rate), no_of_payments))*-1;
@@ -403,8 +405,12 @@
                 this.tableData2 = []
                 //console.log('pmt fact const',this.PMT_factor)
                 let interest=this.InterestRateValue * this.com_mortgage_value*.01
+                if(isNaN(interest)||!isFinite(interest)) interest= 0;
+             
                 let repayment=parseInt(this.com_yearly_payment)-parseInt(this.com_interest_rate_per_year)
+                   if(isNaN(repayment)||!isFinite(repayment)) repayment = 0;
                 let total=interest+repayment
+                  if(isNaN(total)||!isFinite(total)) total =0;
                 var temp_capital =0
                 let year_1 = {
                     name:'  year 1  ',
@@ -413,6 +419,7 @@
                     total,
                     capital:this.com_mortgage_value-repayment 
                 }
+                if(isNaN(year_1.capital || isFinite(year_1.capital))) year_1.capital =0;
                 this.tableData2.push(year_1)
                 let init_term = {
                     name:'year 1',
@@ -513,7 +520,9 @@
                      }
                }
            },
-            
+            com_interest_cover(newval){
+                    this.$emit('interest_cover_changed',this.com_interest_cover)
+            }
         }
     
     }
