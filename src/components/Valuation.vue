@@ -25,9 +25,6 @@
             <el-slider v-model="propertyValue" :step="10" :max="2000" @change="propvalchng()">
   
             </el-slider>
-  
-  
-  
           </div>
   
         </div>
@@ -540,7 +537,7 @@
         LegalFeesPercentage: 0.075,
         LoanTermsYearValue:0,
         AgencyFees: 1,
-        unit: 0,
+        unit: '0',
   
         options: [{
   
@@ -601,17 +598,17 @@
         {
           return 0;
         }
-       else  if(this.unit==0) {
+       else  if(this.unit=='0') {
          console.log('per unit area triggerd')
-         this.propertyArea /=10.76;
-         this.comp_ps_properVal /=10.76;
-         return this.comp_ps_properVal + ' $' + this.unit;
+        // this.propertyArea /=10.76;
+        var c = parseInt(this.comp_ps_properVal) /10.76;
+         return c + ' $ Sq.Feet'   ;
         }
         else {
            
-           this.propertyArea *=10.76;
+           //this.propertyArea *=10.76;
           this.comp_ps_properVal*=10.76;
-           return this.comp_ps_properVal + ' $' + this.unit;
+           return this.comp_ps_properVal + ' $ Sq.Meter' ;
         }
         
   
@@ -619,7 +616,7 @@
   
       anual_rent_perUnit() {
         if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent))
-        return this.comp_ps_annualRent + ' $' + this.unit;
+        return this.comp_ps_annualRent + ' $ sq Feet' ;
         else 
         return 0;
       },
