@@ -773,6 +773,9 @@
       com_net_yield_yp:function(newval){
         this.$emit('net_yield_yp_change',newval)
       }
+    },
+    updated(){
+      console.log('updating dom')
     }
   
   }
