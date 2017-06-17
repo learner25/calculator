@@ -58,14 +58,17 @@
   
       </el-tab-pane>
   
-  
-  
+       <el-tab-pane label="stamp" name="stamp">
+         <stamp></stamp>
+      </el-tab-pane>
+        
     </el-tabs>
   
   </div>
 </template>
 
 <script>
+  import stamp from './StampDuty/singleStampDuty.vue'
   import finance from './Finance.vue'
   
   import valuation from './Valuation.vue'
@@ -83,7 +86,7 @@
       valuation,
   
       goal,
-       
+       stamp
   
     },
   

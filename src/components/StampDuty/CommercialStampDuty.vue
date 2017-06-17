@@ -1,3 +1,10 @@
+<template>
+    <div>
+       <h2>stamp duty:</h2> <h1>{{comp_stampduty}}</h1>
+    </div>
+</template>
+
+
 <script>
 
 export default {
@@ -14,13 +21,11 @@ export default {
       calcFirstMatrix()
             {
             var truthTable1 = [];
-                for(let i=0;i<firstmatrixparam.length;i++)
-                if(propertyValue>firstmatrixparam[i])
+                for(let i=0;i<this.firstmatrixparam.length;i++)
+                if(this.propertyValue>this.firstmatrixparam[i])
                 {
-                
-                    truthTable1.push (1);
-                    
-                }
+                   truthTable1.push (1);
+                 }
                 else truthTable1.push(0);
                 
                 return truthTable1;
@@ -29,8 +34,8 @@ export default {
     calcSecondMatrix()
         {
         var truthTable2 = [];
-        for(let i=0;i<firstmatrixparam.length;i++){
-        var subtracted_result=Math.abs(propertyValue-firstmatrixparam[i])
+        for(let i=0;i<this.firstmatrixparam.length;i++){
+        var subtracted_result=Math.abs(this.propertyValue-this.firstmatrixparam[i])
               {
                 truthTable2.push(subtracted_result);
                 
@@ -69,6 +74,7 @@ export default {
           },
           comp_stampduty(){
              var g = this.sumproduct(this.firstmatrix,this.secondmatrix,this.thirdmatrixparam)
+             return g;
           }
    }
 }
