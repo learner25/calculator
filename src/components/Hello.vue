@@ -68,7 +68,7 @@
 </template>
 
 <script>
-  import stamp from './stampDuty.vue'
+  import stamp from './StampDuty/singleStampDuty.vue'
   import finance from './Finance.vue'
   
   import valuation from './Valuation.vue'
