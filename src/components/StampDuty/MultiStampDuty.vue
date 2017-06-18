@@ -1,6 +1,6 @@
 <template>
     <div>
-       <h2>stamp duty:</h2> <h1>{{comp_stampduty}}</h1>
+       <h2>stamp duty:</h2> <h1>{{comp_stampduty}} ₤</h1>
     </div>
 </template>
 
@@ -10,9 +10,9 @@
 export default {
    data(){
        return{
-          firstmatrixparam:[125000,250000,925000,1500000] ,
-          propertyValue:1250000,
-          thirdmatrixparam:[.02,.03,.05,0.02],
+          firstmatrixparam:[40000,125000,250000,925000,1500000] ,
+          propertyValue:300000,
+          thirdmatrixparam:[.03,.02,.03,.05,.02],
 
        }
        
@@ -74,7 +74,7 @@ export default {
           },
           comp_stampduty(){
              var g = this.sumproduct(this.firstmatrix,this.secondmatrix,this.thirdmatrixparam)
-             return g;
+             return g+1200*1;
           }
    }
 }
