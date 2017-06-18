@@ -59,9 +59,15 @@
       </el-tab-pane>
   
        <el-tab-pane label="stamp" name="stamp">
-         <multistamp></multistamp>
-         <stamp></stamp>
-         <commercialStampDuty></commercialStampDuty>
+         <multistamp
+         :propertyValue="parseInt(propertyVal)"
+         ></multistamp>
+         <stamp
+          :propertyValue="parseInt(propertyVal)"
+         ></stamp>
+         <commercialStampDuty
+          :propertyValue="parseInt(propertyVal)"
+         ></commercialStampDuty>
       </el-tab-pane>
         
     </el-tabs>

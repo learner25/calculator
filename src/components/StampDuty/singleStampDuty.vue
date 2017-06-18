@@ -8,10 +8,12 @@
 <script>
 
 export default {
+   props:['propertyValue'],
    data(){
+     
        return{
           firstmatrixparam:[125000,250000,925000,1500000] ,
-          propertyValue:1250000,
+          //propertyValue:1250000,
           thirdmatrixparam:[.02,.03,.05,0.02],
 
        }
@@ -22,7 +24,7 @@ export default {
             {
             var truthTable1 = [];
                 for(let i=0;i<this.firstmatrixparam.length;i++)
-                if(this.propertyValue>this.firstmatrixparam[i])
+                if(parseInt(this.propertyValue)>this.firstmatrixparam[i])
                 {
                    truthTable1.push (1);
                  }
@@ -35,7 +37,7 @@ export default {
         {
         var truthTable2 = [];
         for(let i=0;i<this.firstmatrixparam.length;i++){
-        var subtracted_result=Math.abs(this.propertyValue-this.firstmatrixparam[i])
+        var subtracted_result=Math.abs(parseInt(this.propertyValue)-this.firstmatrixparam[i])
               {
                 truthTable2.push(subtracted_result);
                 

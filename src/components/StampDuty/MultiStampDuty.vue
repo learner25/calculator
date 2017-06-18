@@ -8,10 +8,11 @@
 <script>
 
 export default {
+     props:['propertyValue'],
    data(){
        return{
           firstmatrixparam:[40000,125000,250000,925000,1500000] ,
-          propertyValue:300000,
+          //propertyValue:300000,
           thirdmatrixparam:[.03,.02,.03,.05,.02],
 
        }
