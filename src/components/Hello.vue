@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
   
-    <el-tabs type="border-card">
+    <el-tabs type="border-card" v-model="activeName">
   
       <el-tab-pane label="Valuation" name="first">
   
@@ -59,7 +59,9 @@
       </el-tab-pane>
   
        <el-tab-pane label="stamp" name="stamp">
+         <multistamp></multistamp>
          <stamp></stamp>
+         <commercialStampDuty></commercialStampDuty>
       </el-tab-pane>
         
     </el-tabs>
@@ -69,12 +71,11 @@
 
 <script>
   import stamp from './StampDuty/singleStampDuty.vue'
+  import multistamp from './StampDuty/MultiStampDuty.vue'
+  import commercialStampDuty from './StampDuty/CommercialStampDuty.vue'
   import finance from './Finance.vue'
-  
   import valuation from './Valuation.vue'
-  
   import goal from './GoalSeek.vue'
-  
   export default {
   
     name: 'hello',
@@ -86,7 +87,10 @@
       valuation,
   
       goal,
-       stamp
+    
+      stamp,
+      multistamp,
+      commercialStampDuty
   
     },
   
@@ -97,7 +101,7 @@
         msg: 'Welcome to Your Vue.js App',
   
         input: '',
-  
+        activeName:"first",
         value8: 8,
         netyield:0,
         propertyVal: 0,
