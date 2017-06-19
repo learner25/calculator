@@ -18,11 +18,11 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-input v-model="propertyValue" v-on:change="propvalchng()"></el-input>
+          <el-input  v-model.trim.number="propertyValue" v-on:change="propvalchng()"></el-input>
   
           <div class="block">
   
-            <el-slider v-model="propertyValue" :step="10" :max="2000" @change="propvalchng()">
+            <el-slider v-model="propertyValue" :step="10" :max="2000" >
   
             </el-slider>
           </div>
@@ -526,7 +526,7 @@
         value8: 8,
         input: '',
         input3: '',
-        propertyValue: 0,
+        propertyValue:0,
         propertyArea: 0,
         annualRentValue: 0,
         stampDuty:0,
@@ -740,10 +740,9 @@
         }
       },
       propvalchng() {
-  
+     
         this.$emit('propertyValueinput', this.propertyValue)
-  
-      },
+       },
   
       annualRentchng() {
   
