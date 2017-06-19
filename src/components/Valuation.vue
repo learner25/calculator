@@ -22,7 +22,7 @@
   
           <div class="block">
   
-            <el-slider v-model="propertyValue" :step="10" :max="2000" >
+            <el-slider v-model="propertyValue" :step="1000" :max="200000" >
   
             </el-slider>
           </div>
@@ -39,11 +39,11 @@
   
           <div class="grid-content bg-purple-light">
   
-            <el-input placeholder="Please input" v-model="perUnit" :value="perUnit" disabled></el-input>
+            <el-input placeholder="Please input" v-model.trim.number="perUnit" ></el-input>
   
             <div class="block">
   
-              <el-slider v-model="value8" :step="10" :max="2000">
+              <el-slider v-model="perUnit" :step="10" :max="20000">
   
               </el-slider>
          
@@ -83,7 +83,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-input placeholder="Please input" @change="annualRentchng()" v-model="annualRentValue"></el-input>
+          <el-input placeholder="Please input" @change="annualRentchng()" v-model.trim.number="annualRentValue"></el-input>
   
           <div class="block">
   
@@ -155,7 +155,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-input placeholder="Please input" @change="areachange()" v-model="propertyArea"></el-input>
+          <el-input placeholder="Please input" @change="areachange()" v-model.trim.number="propertyArea"></el-input>
   
           <div class="block">
   
@@ -299,7 +299,7 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Legal Fees</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="com_legal_fees" disabled></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="com_legal_fees" disabled></el-input>
                 <div class="block">
                  
                      
@@ -310,10 +310,10 @@
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="propertyArea"></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="com_legal_fees"></el-input>
                 <div class="block">
                     <el-slider
-                      v-model="value8"
+                      v-model="com_legal_fees"
                       :step="10"
                       :max="2000"
                       >
@@ -346,10 +346,10 @@
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="propertyArea"></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="propertyArea"></el-input>
                 <div class="block">
                     <el-slider
-                      v-model="value8"
+                      v-model="propertyArea"
                       :step="10"
                       :max="2000"
                       >
@@ -602,7 +602,7 @@
          console.log('per unit area triggerd')
         // this.propertyArea /=10.76;
         var c = parseInt(this.comp_ps_properVal) /10.76;
-         return c + ' $ Sq.Feet'   ;
+         return parseFloat(c)  ;
         }
         else {
            
