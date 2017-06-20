@@ -6,7 +6,7 @@
 
 
 <script>
-
+window.MultiStampDuty =0;
 export default {
      props:['propertyValue'],
    data(){
@@ -75,6 +75,7 @@ export default {
           },
           comp_stampduty(){
              var g = this.sumproduct(this.firstmatrix,this.secondmatrix,this.thirdmatrixparam)
+             window.MultiStampDuty= g+1200*1;
              return g+1200*1;
           }
    }
