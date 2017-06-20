@@ -366,7 +366,9 @@
                  return 0;
             },
             com_equity_return_after_loan(){
-                return Math.abs(this.com_interest_rate_per_year-this.annualRent)
+                 var d = Math.abs(this.com_interest_rate_per_year-this.annualRent)
+                 if(isFinite(d)||!isNaN(d)) return d;
+                 return 0;
             },
             com_equity_return_percentage_before_loan(){
                var d = this.com_equity_return_before_loan/ this.com_equity_required*100

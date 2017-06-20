@@ -318,11 +318,14 @@
           </el-col>
       </el-row>
           <el-row>
-         <!--agency fees-->
+         <!--legal fees--> 
+            <!--rainbow-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Legal Fees</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model.trim.number="com_legal_fees" disabled></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="LegalFeesPercentage" >
+                   <template slot="append">%</template>
+                </el-input>
                 <div class="block">
                  
                      
@@ -355,10 +358,13 @@
       </el-row>
         <el-row>
          <!--legal fees-->
+          
           <el-col :span="6"><div class="grid-content bg-purple"></div>Agency Fees</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="com_agency_fees" disabled></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="AgencyFees" >
+                   <template slot="append">%</template>
+                </el-input>
                 <div class="block">
                  
                      
@@ -369,7 +375,7 @@
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model.trim.number="propertyArea"></el-input>
+                <el-input placeholder="Please input" v-model.trim.number="com_agency_fees" disabled></el-input>
                 <div class="block">
                     <!--<el-slider
                       v-model="propertyArea"
@@ -432,9 +438,9 @@
           <div class="block">
            <el-col :span="4" :offset="10">
               <el-input v-model="YieldSensitivityIncreamentValue">
-<template slot="append">
-  %
-</template>
+                <template slot="append">
+                  %
+                </template>
               </el-input>
                     <el-slider
                       v-model="YieldSensitivityIncreamentValue"
@@ -557,9 +563,9 @@
         YieldSensitivityIncreamentValue: 0,
         purchaseCostPercentage: 1.80,
         LegalFees: 0,
-        LegalFeesPercentage: 0.075,
+        LegalFeesPercentage: 0.75,
         LoanTermsYearValue:0,
-        AgencyFees: 1,
+        AgencyFees: 1.00,
         unit: '0',
         stampDutyType:0,
         options: [{
@@ -681,14 +687,14 @@
   
       com_legal_fees() {
   
-        return this.propertyValue * this.LegalFeesPercentage * .1;
+        return this.propertyValue * this.LegalFeesPercentage * .01;
   
       },
   
       com_agency_fees() {
   
-        return this.propertyValue * .01 * 1;
-  
+        return this.propertyValue * this.AgencyFees * .01;
+   
       },
   
       com_gross() {
