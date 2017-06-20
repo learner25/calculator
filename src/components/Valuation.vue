@@ -6,11 +6,11 @@
   
   <div>
   
-    <el-row>
+    <el-row :class="elrowtarget">
   
       <!--property value-->
   
-      <el-col :span="6">
+      <el-col :span="6" >
   
         <div class="grid-content bg-purple"></div>Property Value</el-col>
   
@@ -79,7 +79,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-button type="primary" icon="plus"></el-button>
+          <el-button type="primary" icon="plus" @click="highlight_property_value"></el-button>
   
         </div>
   
@@ -568,6 +568,7 @@
         AgencyFees: 1.00,
         unit: '0',
         stampDutyType:0,
+        currentHighLightValue:'',
         options: [{
   
           value: 0,
@@ -605,8 +606,7 @@
   
     computed: {
     stampDutyTypePercentage(){
-         console.log('property value as ',this.propertyValue)
-         console.log('stamp duty as ',this.stampDutyType)
+        
          return parseFloat((this.stampDutyType/this.propertyValue)*100).toFixed(2)
     },
      comp_ps_properVal() {
@@ -766,10 +766,20 @@
          return 0;
   
       },
-  
+        elrowtarget(){
+          if (this.currentHighLightValue=='property')
+           {
+             return 'el-row-target'
+           }
+           return 'el-row'
+      },
     },
   
     methods: {
+    
+      highlight_property_value(){
+          this.currentHighLightValue='property' 
+      },
      propertyStampDutyOnSelection()
      {
        
@@ -856,9 +866,20 @@
 
 <style scoped>
   .el-row {
-  
     margin-bottom: 20px;
+    padding: 15px;
+    /*background: #ffd972;*/
+    &:last-child {
   
+      margin-bottom: 0;
+  
+    }
+  
+  }
+   .el-row-target {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffd972;
     &:last-child {
   
       margin-bottom: 0;

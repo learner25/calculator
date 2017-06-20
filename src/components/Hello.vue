@@ -58,9 +58,7 @@
         ></goal>
   
       </el-tab-pane>
-  
-       <!--<el-tab-pane label="stamp" name="stamp">
-         <multistamp
+          <multistamp
          :propertyValue="parseInt(propertyVal)"
          ></multistamp>
          <stamp
@@ -69,6 +67,8 @@
          <commercialStampDuty
           :propertyValue="parseInt(propertyVal)"
          ></commercialStampDuty>
+       <!--<el-tab-pane label="stamp" name="stamp">
+        
       </el-tab-pane>-->
         
     </el-tabs>
@@ -227,8 +227,11 @@
     margin: 0 10px;
   
   }
-  
-  
+  .el-row
+   {
+    padding: 15px;
+    background: #ffd972;
+   }
   
   a {
   
@@ -236,12 +239,24 @@
   
   }
   
+  .el-row-target {
   
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffd972;
+    &:last-child {
+  
+      margin-bottom: 0;
+  
+    }
+  
+  } 
   
   .el-row {
   
     margin-bottom: 20px;
-  
+    padding: 15px;
+    
     &:last-child {
   
       margin-bottom: 0;
