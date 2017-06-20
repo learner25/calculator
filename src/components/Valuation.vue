@@ -18,11 +18,11 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-input  v-model.trim.number="propertyValue" v-on:change="propvalchng()"></el-input>
+          <el-input  v-model.trim.number="propertyValue" @change="propvalchng()"></el-input>
   
           <div class="block">
   
-            <el-slider v-model="propertyValue" :step="1000" :max="200000" >
+            <el-slider v-model="propertyValue" :step="1000" :max="200000"  @change="propvalchng()">
   
             </el-slider>
           </div>
@@ -43,7 +43,7 @@
   
             <div class="block">
   
-              <el-slider v-model="perUnit" :step="10" :max="20000">
+              <el-slider v-model="perUnit" :step="10" :max="2000" >
   
               </el-slider>
          
@@ -276,12 +276,12 @@
               <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model="propertyArea"></el-input>
                 <div class="block">
-                    <el-slider
+                    <!--<el-slider
                       v-model="value8"
                       :step="10"
                       :max="2000"
                       >
-                    </el-slider>
+                    </el-slider>-->
                      
                   </div>
                </div>
@@ -312,13 +312,13 @@
               <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model.trim.number="com_legal_fees"></el-input>
                 <div class="block">
-                    <el-slider
+                    <!--<el-slider
                       v-model="com_legal_fees"
                       :step="10"
                       :max="2000"
                       >
                     </el-slider>
-                     
+                     -->
                   </div>
                </div>
             </div>
@@ -348,12 +348,12 @@
               <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model.trim.number="propertyArea"></el-input>
                 <div class="block">
-                    <el-slider
+                    <!--<el-slider
                       v-model="propertyArea"
                       :step="10"
                       :max="2000"
                       >
-                    </el-slider>
+                    </el-slider>-->
                      
                   </div>
                </div>
@@ -608,7 +608,7 @@
            
            //this.propertyArea *=10.76;
           this.comp_ps_properVal*=10.76;
-           return this.comp_ps_properVal + ' $ Sq.Meter' ;
+           return this.comp_ps_properVal;
         }
         
   
@@ -616,7 +616,7 @@
   
       anual_rent_perUnit() {
         if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent))
-        return this.comp_ps_annualRent + ' $ sq Feet' ;
+        return parseFloat(this.comp_ps_annualRent) + ' $ sq Feet' ;
         else 
         return 0;
       },
@@ -739,11 +739,17 @@
            return (this.comp_ps_properVal *10.76)+ ' $' + this.unit;
         }
       },
-      propvalchng() {
-     
+      propvalchng( ) {
+       console.log('hi')
+       
         this.$emit('propertyValueinput', this.propertyValue)
        },
-  
+       propvalSliderchng() {
+         console.log('perunit changed..',newval)
+        var d = parseFloat(this.propertyValue /= parseFloat(newval))
+        this.propertyValue = d
+        this.$emit('propertyValueinput', this.propertyValue)
+       },
       annualRentchng() {
   
         this.$emit('annualRentValueinput', this.annualRentValue)
@@ -755,7 +761,7 @@
         
       },
       areachange() {
-  
+        this.propertyValue = parseFloat(this.propertyValue)/5;
         this.$emit('propertyAreainput', this.propertyArea)
   
       },
@@ -766,6 +772,7 @@
   
     },
     watch :{
+      
       com_net_yield:function(newval){
            this.$emit('com_net_yield_change',newval)
       },

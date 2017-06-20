@@ -42,7 +42,8 @@
   
       <el-tab-pane label="Goal Seek" name="third">
   
-        <goal :propval="propertyVal" 
+        <goal
+         :propval="propertyVal" 
          :annualrent="annualrentVal"
          :NetYieldPercent = "netyield"
          :mortgage="mortgage"
@@ -130,7 +131,7 @@
     methods: {
   
       setpropertyVal(data) {
-  
+        console.log('property value',data)
         this.propertyVal = data;
   
      },
