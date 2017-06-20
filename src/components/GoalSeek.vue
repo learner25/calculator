@@ -1,6 +1,7 @@
 <template>
  <!--property value-->
   <div> 
+      <div  v-show="render">
       <el-row>
          <!--property value-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Property Value</el-col>
@@ -84,8 +85,25 @@
           
            
       </el-row>
+        
+         </div>      
+          
+         <div  v-show="!render">
+              <el-row>
+         <el-col :span="12" :offset="6"> 
+              <el-card style="margin-bottom:20px">
+                  <h3>Can't determine valuation</h3>
+                  <p>You have to put a <b>property value</b> first</p>
+              </el-card>
+         </el-col>
+         </el-row>
+             </div>
+
+
+           <!--finance-->
+           <div v-show="render_finance">
            <el-row>
-    
+          
             <el-col :span="6">
     
                 Mortgage(%LTV)
@@ -170,6 +188,19 @@
          </el-col>
      </el-row>
     </el-row>
+    
+    </div>
+     <div  v-show="!render_finance">
+          <el-row>
+         <el-col :span="12" :offset="6">
+              <el-card style="margin-bottom:20px">
+                  <h3>Can't determine finance</h3>
+                  <p>You have to put a <b>mortgage value</b> first</p>
+              </el-card>
+             
+           </el-col>
+           </el-row> 
+           </div>
    </div>
 
 </template>
@@ -178,7 +209,9 @@
  export default {
      data(){
          return {
-             input:''
+             input:'',
+             render:false,
+             render_finance:false
          }
      },
      props:[
@@ -194,13 +227,26 @@
             'requireEquityBefore',
             'requireEquityAfter',
              'requireEquityBeforeValue',
-             'yp'
+             'yp',
+             
            ],
  
  computed:{
      net_yield(){
          return this.NetYieldPercent;
      }
+ },
+ watch:{
+     propval:function(n_val)
+     {
+       if(n_val>0) this.render = true
+        else this.render = false
+     },
+      mortgage:function(n_val) 
+      {
+       if(n_val>0) this.render_finance = true
+        else this.render_finance = false
+     },
  }
  }
 </script>
