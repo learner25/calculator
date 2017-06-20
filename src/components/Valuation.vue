@@ -14,7 +14,7 @@
   
         <div class="grid-content bg-purple"></div>Property Value</el-col>
   
-      <el-col :span="6">
+      <el-col :span="4">
   
         <div class="grid-content bg-purple-light">
   
@@ -31,7 +31,7 @@
   
       </el-col>
   
-      <el-col :span="6" :offset="1">
+      <el-col :span="3" :offset="1">
   
         <div class="grid-content bg-purple">
   
@@ -56,8 +56,26 @@
   
   
       </el-col>
-  
-      <el-col :span="4">
+  <el-col :span="3" :offset="1">
+            <div class="grid-content bg-purple">
+
+              <div class="grid-content bg-purple-light">
+                <el-select v-model="stamdutyValue" placeholder="Select"  @change = "propertyStampDutyOnSelection">
+                    <el-option
+                      v-for="item in PropertyTypesoptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                     >
+                    </el-option>
+                  </el-select>
+                
+                <div class="block">
+                  </div>
+               </div>
+            </div>
+        </el-col>
+      <el-col :span="6">
   
         <div class="grid-content bg-purple-light">
   
@@ -98,7 +116,7 @@
         </div>
   
       </el-col>
-  
+        
       <el-col :span="6" :offset="1">
   
         <div class="grid-content bg-purple">
@@ -242,7 +260,9 @@
                 <el-input placeholder="Please input" 
                 v-model="purchaseCostPercentage"
                 disabled
-                ></el-input>
+                >
+                 <template slot="append">%</template>
+                </el-input>
                 <div class="block">
                     
                      
@@ -263,7 +283,8 @@
           <el-col :span="6"><div class="grid-content bg-purple"></div>Stamp Duty</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="stampDuty" disabled></el-input>
+              <!--piko-->
+                <el-input placeholder="Please input" v-model="stampDutyType" disabled></el-input> 
                 <div class="block">
                  
                      
@@ -274,7 +295,9 @@
             <div class="grid-content bg-purple">
 
               <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="propertyArea"></el-input>
+                <el-input placeholder="Please input" v-model="stampDutyTypePercentage" disabled>
+                  <template slot="append">%</template>
+                </el-input>
                 <div class="block">
                     <!--<el-slider
                       v-model="value8"
@@ -522,7 +545,7 @@
     data() {
   
       return {
-  
+        stamdutyValue:'',
         value8: 8,
         input: '',
         input3: '',
@@ -538,7 +561,7 @@
         LoanTermsYearValue:0,
         AgencyFees: 1,
         unit: '0',
-  
+        stampDutyType:0,
         options: [{
   
           value: 0,
@@ -551,8 +574,21 @@
   
           label: 'Sq Feet'
   
-        }, ],
-  
+        }, 
+        ],
+        PropertyTypesoptions:[
+          {
+          value: '0',
+          label: 'Single Property'
+         }, 
+         {
+          value: '1',
+          label: 'Multi Property'
+        }, {
+          value: '2',
+          label: 'Commercial Property'
+        }
+        ],
         value: ''
   
       }
@@ -562,7 +598,11 @@
   
   
     computed: {
-  
+    stampDutyTypePercentage(){
+         console.log('property value as ',this.propertyValue)
+         console.log('stamp duty as ',this.stampDutyType)
+         return parseFloat((this.stampDutyType/this.propertyValue)*100).toFixed(2)
+    },
      comp_ps_properVal() {
   
         if (this.__ispa == true) {
@@ -724,6 +764,27 @@
     },
   
     methods: {
+     propertyStampDutyOnSelection()
+     {
+       
+       switch(this.stamdutyValue){
+         case  '0':
+            this.stampDutyType = window.singleStampDuty
+           console.log('stamping',this.stampDutyType)
+           break;
+         case  '1' :
+           this.stampDutyType = window.MultiStampDuty
+           console.log('stamping multi',this.stampDutyType)
+           break;
+         case '2' :
+            this.stampDutyType = window.commercialStampDuty
+             console.log('stamping commercial',this.stampDutyType)
+            break;
+         default:
+            break;
+       }
+            
+      },
       unitchange(){
            if(!this.__ispa)
         {
