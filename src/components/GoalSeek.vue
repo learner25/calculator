@@ -90,8 +90,8 @@
           
          <div  v-show="!render">
               <el-row>
-         <el-col :span="12" > 
-              <el-card style="margin-bottom:20px">
+         <el-col :span="12" :offset="3"> 
+              <el-card style="margin-bottom:20px" >
                   <h3>Can't determine valuation</h3>
                   <p>You have to put a <b>property value</b> first</p>
               </el-card>

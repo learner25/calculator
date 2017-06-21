@@ -1,7 +1,7 @@
 
 <template>
-    <div>
-     <!--<h2>stamp duty:</h2> <h1>{{comp_stampduty}} ₤</h1> -->
+    <div >
+     <h2 >commercial stamp duty:</h2> <h1>{{comp_stampduty}} ₤</h1> 
     </div>
 </template>
 
