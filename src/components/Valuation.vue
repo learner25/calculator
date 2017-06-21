@@ -6,11 +6,11 @@
   
   <div>
   
-    <el-row>
+    <el-row  >
   
       <!--property value-->
   
-      <el-col :span="6">
+      <el-col :span="6" >
   
         <div class="grid-content bg-purple"></div>Property Value</el-col>
   
@@ -89,7 +89,7 @@
   
     <!--annual rent-->
   
-    <el-row>
+    <el-row :class="elrowtarget">
   
       <!--property area-->
   
@@ -149,7 +149,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-button type="primary" icon="plus"></el-button>
+          <el-button type="primary" icon="plus" ></el-button>
   
         </div>
   
@@ -498,14 +498,14 @@
          <el-row>
          <!--year 6-->
           <el-col :span="4"><div class="grid-content bg-purple">
-              <el-input placeholder="Please input" v-model="input">
+              <el-input placeholder="Please input" v-model="com_y1_sensitivity_val">
                 </el-input>
                 </div>
                 </el-col>
                  <!--year 7-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-                <el-input placeholder="Please input" v-model="input"></el-input>
+                <el-input placeholder="Please input" v-model="com_y2_sensitivity_val"></el-input>
                 <div class="block">
                      
                   </div>
@@ -526,13 +526,13 @@
            <!--year 9-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+               <el-input placeholder="Please input" v-model="com_y4_sensitivity_val"></el-input>
             </div>
           </el-col>
           <!--year 10-->
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-input placeholder="Please input" v-model="propertyValue"></el-input>
+               <el-input placeholder="Please input" v-model="com_y5_sensitivity_val"></el-input>
             </div>
           </el-col>
       </el-row>
@@ -545,7 +545,7 @@
 </template>
 
 <script>
-
+  window.previousGoal = null
   export default {
   
     data() {
@@ -568,6 +568,7 @@
         AgencyFees: 1.00,
         unit: '0',
         stampDutyType:0,
+        currentHighLightValue:'',
         options: [{
   
           value: 0,
@@ -605,8 +606,7 @@
   
     computed: {
     stampDutyTypePercentage(){
-         console.log('property value as ',this.propertyValue)
-         console.log('stamp duty as ',this.stampDutyType)
+        
          return parseFloat((this.stampDutyType/this.propertyValue)*100).toFixed(2)
     },
      comp_ps_properVal() {
@@ -766,10 +766,80 @@
          return 0;
   
       },
+       com_y1_sensitivity_val() {
   
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+        var k = Math.abs(d - 2 * this.YieldSensitivityIncreamentValue);
+        var b = parseInt(this.propertyValue)*k*.01;
+        if(!isNaN(k)||isFinite(k)) return b;
+        return  0;
+  
+      },
+  
+      com_y2_sensitivity_val() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+       var c =  Math.abs(d - this.YieldSensitivityIncreamentValue) ;
+       var b = parseInt(this.propertyValue)*c*.01;
+       if(!isNaN(c)||isFinite(c))
+        return b;
+
+       return 0;
+  
+      },
+  
+      com_y4_sensitivity_val() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+  
+        var j = Math.abs(d + this.YieldSensitivityIncreamentValue);
+        var b = parseInt(this.propertyValue)*j*.01;
+        if(!isNaN(j)||isFinite(j)) return b;
+         return 0;
+  
+      },
+  
+      com_y5_sensitivity_val() {
+  
+        var d = 100 * (this.annualRentValue / (parseFloat(this.propertyValue) + parseFloat(this.com_gross)));
+        var c = Math.abs(d + 2 * this.YieldSensitivityIncreamentValue);
+        if(!isNaN(c)||isFinite(c)) return c;
+         return 0;
+  
+      },
+
+
+        elrowtarget(){
+          if (this.currentHighLightValue!='')
+           {
+             this.currentHighLightValue=''
+             return 'el-row-target'
+           }
+           return 'el-row'
+      },
     },
   
     methods: {
+    
+      // highlight_property_value(ev)
+      // {
+      //    var g = ev.target.parentElement
+      //    var d = g.parentElement
+      //    var c = d.parentElement
+      //    if(window.previousGoal==undefined||window.previousGoal==null)
+      //     window.previousGoal = c;
+      //    var p = c.className.split(' ').includes('el-row-target')
+      //    console.log(window.previousGoal)
+      //    if(p) { 
+      //      window.previousGoal.className='el-row'
+      //    }
+      //    else c.className ='el-row el-row-target'
+      //   this.currentHighLightValue='property' 
+      // },
+      // highlight_annual_rent(){
+      //     this.currentHighLightValue='annualrent' 
+      // },
      propertyStampDutyOnSelection()
      {
        
@@ -856,9 +926,20 @@
 
 <style scoped>
   .el-row {
-  
     margin-bottom: 20px;
+    padding: 15px;
+    /*background: #ffd972;*/
+    &:last-child {
   
+      margin-bottom: 0;
+  
+    }
+  
+  }
+   .el-row-target {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffd972;
     &:last-child {
   
       margin-bottom: 0;
