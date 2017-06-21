@@ -4,7 +4,7 @@
       <div  v-show="render">
       <el-row>
          <!--property value-->
-          <el-col :span="6"><div class="grid-content bg-purple"></div>Property Value</el-col>
+          <el-col :span="6" ><div class="grid-content bg-purple"></div>Property Value</el-col>
           <el-col :span="6">
             <div class="grid-content bg-purple-light">
                 <el-input placeholder="Please input" v-model="propval"></el-input>
@@ -90,7 +90,7 @@
           
          <div  v-show="!render">
               <el-row>
-         <el-col :span="12" :offset="6"> 
+         <el-col :span="12" > 
               <el-card style="margin-bottom:20px">
                   <h3>Can't determine valuation</h3>
                   <p>You have to put a <b>property value</b> first</p>
@@ -192,7 +192,7 @@
     </div>
      <div  v-show="!render_finance">
           <el-row>
-         <el-col :span="12" :offset="6">
+         <el-col :span="12" :offset="3">
               <el-card style="margin-bottom:20px">
                   <h3>Can't determine finance</h3>
                   <p>You have to put a <b>mortgage value</b> first</p>
