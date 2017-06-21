@@ -58,7 +58,7 @@
         ></goal>
   
       </el-tab-pane>
-          <multistamp
+          <!--<multistamp
          :propertyValue="parseInt(propertyVal)"
          ></multistamp>
          <stamp
@@ -66,10 +66,18 @@
          ></stamp>
          <commercialStampDuty
           :propertyValue="parseInt(propertyVal)"
-         ></commercialStampDuty>
-       <!--<el-tab-pane label="stamp" name="stamp">
-        
-      </el-tab-pane>-->
+         ></commercialStampDuty>-->
+       <el-tab-pane label="stamp" name="stamp">
+            <multistamp
+            :propertyValue="parseInt(propertyVal)"
+            ></multistamp>
+            <stamp
+              :propertyValue="parseInt(propertyVal)"
+            ></stamp>
+            <commercialStampDuty
+              :propertyValue="parseInt(propertyVal)"
+            ></commercialStampDuty>
+      </el-tab-pane>
         
     </el-tabs>
   

@@ -22,7 +22,7 @@
   
           <div class="block">
   
-            <el-slider v-model="propertyValue" :step="1000" :max="200000"  @change="propvalchng()">
+            <el-slider v-model="propertyValue" :step="1000" :max="20000000"  @change="propvalchng()">
   
             </el-slider>
           </div>
