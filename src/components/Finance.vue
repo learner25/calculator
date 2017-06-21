@@ -227,7 +227,9 @@
               Equity Return <figcaption><small>before loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model="com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" v-model="com_equity_return_percentage_before_loan">
+                 <template slot="append">%</template>
+             </el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input v-model="com_equity_return_before_loan">
@@ -243,7 +245,9 @@
               Equity Return <figcaption><small>after loan repayment</small></figcaption>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan"></el-input>
+             <el-input placeholder="Please input" v-model=" com_equity_return_percentage_before_loan">
+                 <template slot="append">%</template>
+             </el-input>
          </el-col>
          <el-col :span="6" :offset="1">
              <el-input placeholder="Please input" v-model="com_equity_return_after_loan">
@@ -540,7 +544,7 @@
     
     }
 </script>
-<style>
+<style scoped lang="scss">
 
   .el-collapse-item__content{
       overflow-x:auto;

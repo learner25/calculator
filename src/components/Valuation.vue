@@ -638,7 +638,11 @@
         return 0;
   
       },
+    comp_ps_annual_rent_value() {
   
+        return 0;
+  
+      },
       perUnit() {
         if(!this.__ispa)
         {
@@ -661,9 +665,10 @@
       },
   
       anual_rent_perUnit() {
-        if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent))
-        return parseFloat(this.comp_ps_annualRent) + ' $ sq Feet' ;
-        else 
+        if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent)&&this.unit==0)
+        return parseFloat(this.comp_ps_annualRent)/10.76 + ' $ sq Feet' ;
+        else  if(!isNaN(this.comp_ps_annualRent) && isFinite(this.comp_ps_annualRent)&&this.unit==1)
+         return parseFloat(this.comp_ps_annualRent)*10.76 + ' $ sq meter' ;
         return 0;
       },
   
@@ -888,7 +893,7 @@
         this.$emit('propertyValueinput', this.propertyValue)
        },
       annualRentchng() {
-  
+        
         this.$emit('annualRentValueinput', this.annualRentValue)
   
       },
@@ -898,7 +903,7 @@
         
       },
       areachange() {
-        this.propertyValue = parseFloat(this.propertyValue)/5;
+        //this.propertyValue = parseFloat(this.propertyValue)/5;
         this.$emit('propertyAreainput', this.propertyArea)
   
       },
@@ -924,7 +929,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .el-row {
     margin-bottom: 20px;
     padding: 15px;
