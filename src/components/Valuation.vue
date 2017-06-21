@@ -883,8 +883,8 @@
        },
        propvalSliderchng() {
          console.log('perunit changed..',newval)
-        var d = parseFloat(this.propertyValue /= parseFloat(newval))
-        this.propertyValue = d
+       // var d = parseFloat(this.propertyValue /= parseFloat(newval))
+       // this.propertyValue = d
         this.$emit('propertyValueinput', this.propertyValue)
        },
       annualRentchng() {
