@@ -544,7 +544,7 @@
     
     }
 </script>
-<style scoped lang="scss">
+<style scoped >
 
   .el-collapse-item__content{
       overflow-x:auto;

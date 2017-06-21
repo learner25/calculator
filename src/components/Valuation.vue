@@ -6,7 +6,7 @@
   
   <div>
   
-    <el-row  >
+    <el-row  id="propertyValue">
   
       <!--property value-->
   
@@ -79,7 +79,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-button type="primary" icon="plus"></el-button>
+          <el-button type="primary" icon="plus" @click="highlight_property_value" ></el-button>
   
         </div>
   
@@ -89,7 +89,7 @@
   
     <!--annual rent-->
   
-    <el-row :class="elrowtarget">
+    <el-row :class="elrowtarget" id="annualRent">
   
       <!--property area-->
   
@@ -149,7 +149,7 @@
   
         <div class="grid-content bg-purple-light">
   
-          <el-button type="primary" icon="plus" ></el-button>
+          <el-button type="primary" icon="plus" @click="highlight_property_value" ></el-button>
   
         </div>
   
@@ -238,8 +238,8 @@
           <template slot="title">
   
         Purchase Costs
-</template>
-          <el-row>
+        </template>
+          <el-row id="purchaserCost">
          <!--property value-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Purchaser Cost</el-col>
           <el-col :span="6">
@@ -273,12 +273,12 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-button   type="primary" icon="plus"  @click="highlight_property_value"></el-button>
             </div>
           </el-col>
       </el-row>
       <!--annual rent-->
-       <el-row>
+       <el-row id="stampDuty">
          <!--property area-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Stamp Duty</el-col>
           <el-col :span="6">
@@ -313,11 +313,11 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-button type="primary" icon="plus"  @click="highlight_property_value"></el-button>
             </div>
           </el-col>
       </el-row>
-          <el-row>
+          <el-row id="legalfees">
          <!--legal fees--> 
             <!--rainbow-->
           <el-col :span="6"><div class="grid-content bg-purple"></div>Legal Fees</el-col>
@@ -352,11 +352,11 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-button type="primary" icon="plus"  @click="highlight_property_value"></el-button>
             </div>
           </el-col>
       </el-row>
-        <el-row>
+        <el-row id="agencyfees">
          <!--legal fees-->
           
           <el-col :span="6"><div class="grid-content bg-purple"></div>Agency Fees</el-col>
@@ -391,7 +391,7 @@
           </el-col>
           <el-col :span="4">
             <div class="grid-content bg-purple-light">
-               <el-button type="primary" icon="plus"></el-button>
+               <el-button type="primary" icon="plus"  @click="highlight_property_value"></el-button>
             </div>
           </el-col>
       </el-row>
@@ -405,7 +405,7 @@
   <el-col :span="6"><div class="grid-content bg-purple"> </div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"> </div></el-col>
 </el-row>
-                <el-row :gutter="20">
+                <el-row :gutter="20" id="netYield">
   <el-col :span="6">
      <div class="grid-content bg-purple">
         Net Yield
@@ -423,7 +423,12 @@
 </template>
   </el-input></div>
   </el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"><el-button type="primary" icon="plus"></el-button> </div></el-col>
+  <el-col :span="6">
+     <div class="grid-content bg-purple">
+        <el-button type="primary" icon="plus"  @click="highlight_property_value">
+          </el-button> 
+          </div>
+          </el-col>
 </el-row>
      <el-row>
          <el-collapse accordion>
@@ -827,24 +832,41 @@
   
     methods: {
     
-      // highlight_property_value(ev)
-      // {
-      //    var g = ev.target.parentElement
-      //    var d = g.parentElement
-      //    var c = d.parentElement
-      //    if(window.previousGoal==undefined||window.previousGoal==null)
-      //     window.previousGoal = c;
-      //    var p = c.className.split(' ').includes('el-row-target')
-      //    console.log(window.previousGoal)
-      //    if(p) { 
-      //      window.previousGoal.className='el-row'
-      //    }
-      //    else c.className ='el-row el-row-target'
-      //   this.currentHighLightValue='property' 
-      // },
-      // highlight_annual_rent(){
-      //     this.currentHighLightValue='annualrent' 
-      // },
+      highlight_property_value(ev)
+      {
+        
+         var g = ev.target.parentElement
+         var d = g.parentElement
+         var c = d.parentElement
+         localStorage.setItem("goalValue",c.id);
+         console.log(c)
+          var el_row_array =window.document.getElementsByClassName('el-row')
+          for(var i=0;i<el_row_array.length;i++)
+          {
+            //console.log(el_row_array[i])
+          
+             if(el_row_array[i].id!=localStorage.getItem("goalValue")){
+                
+             el_row_array[i].className='el-row'
+            // localStorage.setItem("goalValue",null);
+                
+              }
+             else {
+               console.log('match',el_row_array[i].id)
+               el_row_array[i].className ='el-row el-row-target'
+               }
+          }
+        /* var p = c.className.split(' ').includes('el-row-target')
+         console.log(window.previousGoal)
+         if(p) { 
+           window.previousGoal.className='el-row'
+         }
+         else c.className ='el-row el-row-target'
+        this.currentHighLightValue='property'*/ 
+      },
+      highlight_annual_rent(){
+          this.currentHighLightValue='annualrent' 
+      },
      propertyStampDutyOnSelection()
      {
        
@@ -929,7 +951,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped >
   .el-row {
     margin-bottom: 20px;
     padding: 15px;
