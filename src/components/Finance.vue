@@ -124,11 +124,11 @@
                 </el-select>
          </el-col>
           <el-col :span="6">
-             <el-input placeholder="Please input" v-model="MortgagePercentageValue"></el-input>
+             <el-input placeholder="Please input" v-model="interestonly_com_mortgage_value"></el-input>
          </el-col>
          <el-col :span="6" :offset="1">
-             <el-input placeholder="Please input" v-model="com_mortgage_value">
-                  
+             <el-input placeholder="Please input" v-model="interestonly_MortgagePercentageValue">
+                 <template slot="append">%</template> 
              </el-input>
          </el-col>
      </el-row>
@@ -275,7 +275,8 @@
                 MortgageValue: 0,
                 NetAnnualRent:10000,
                 MortgagePercentageValue: 0,
-
+                interestonly_com_mortgage_value:0,
+                interestonly_MortgagePercentageValue:0,
                 LoanTermYearValue:0,
                 ValuationFeesPercentageValue:0,
                 LegalFeesPercentageValue:0,
@@ -395,7 +396,17 @@
         
         methods:{
            chng(){
-               alert(this.value)
+               if(this.value!=0) 
+                  {
+                      
+                      this.interestonly_com_mortgage_value=0;
+                      this.interestonly_MortgagePercentageValue=0;
+                  }
+                   else {
+                           
+                          this.interestonly_com_mortgage_value=this.com_mortgage_value;
+                          this.interestonly_MortgagePercentageValue= this.MortgagePercentageValue;
+                   }
            },
            calc_PMT(interest_rate,no_of_payments,present_value)
            {
