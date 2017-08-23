@@ -1,8 +1,8 @@
 
 <template>
-    <div>
+    <!--<div>
      <h2>single stamp duty:</h2> <h1>{{comp_stampduty}} ₤</h1> 
-    </div>
+    </div>-->
 </template>
 
 
@@ -80,6 +80,13 @@ export default {
              window.singleStampDuty = g;
              return g;
           }
+   },
+     watch:{
+       comp_stampduty:function(newval)
+       {
+           alert(newval+'changed new stampduty from single stampduty')
+            this.$emit('single_stamp_duty_changed',newval)
+       }
    }
 }
 </script>

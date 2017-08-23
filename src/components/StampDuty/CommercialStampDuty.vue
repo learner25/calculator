@@ -1,8 +1,8 @@
 
 <template>
-    <div >
+    <!--<div >
      <h2 >commercial stamp duty:</h2> <h1>{{comp_stampduty}} ₤</h1> 
-    </div>
+    </div>-->
 </template>
 
 
@@ -79,6 +79,13 @@ export default {
              window.commercialStampDuty = g;
              return g;
           }
+   },
+     watch:{
+       comp_stampduty:function(newval)
+       {
+          alert(newval+'from commercial stamp duty')
+            this.$emit('commercial_stamp_duty_changed',newval)
+       }
    }
 }
 </script>
