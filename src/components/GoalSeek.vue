@@ -267,7 +267,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .el-row {
         margin-bottom: 20px;
     &:last-child {

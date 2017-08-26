@@ -639,7 +639,7 @@
 
     }
 </script>
-<style>
+<style scoped lang="scss">
 
     .el-collapse-item__content{
         overflow-x:auto;
