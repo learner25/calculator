@@ -83,7 +83,7 @@ export default {
      watch:{
        comp_stampduty:function(newval)
        {
-          alert(newval+'from commercial stamp duty')
+        //  alert(newval+'from commercial stamp duty')
             this.$emit('commercial_stamp_duty_changed',newval)
        }
    }

@@ -15,6 +15,7 @@
                     <div class="block">
                         <el-slider v-model="propertyValue" 
                          :steps="10000"
+                         :min="ragne_1_start"
                          :max="parseInt(range_1)"  @change="propvalchng()"></el-slider>
                     </div>
                 </div>
@@ -59,12 +60,16 @@
             <el-col :span="6">
 
                 <div class="grid-content bg-purple"></div>Annual Rent</el-col>
-
+               
             <el-col :span="6">
 
                 <div class="grid-content bg-purple-light">
 
-                    <el-input placeholder="Please input" @change="annualRentchng()" v-model.trim.number="annualRentValue"></el-input>
+                    <el-input placeholder="Please input" @change="annualRentchng()" v-model.trim.number="annualRentValue">
+                         <template slot="prepend">
+                             (£)
+                          </template>
+                    </el-input>
                     <template slot="prepend">(£) </template>
                     <div class="block">
 
@@ -526,6 +531,9 @@
     import stamp from './StampDuty/singleStampDuty.vue'
     import multistamp from './StampDuty/MultiStampDuty.vue'
     import commercialStampDuty from './StampDuty/CommercialStampDuty.vue'
+
+ window.big = require('big-integer')
+
     window.previousGoal = null
     export default {
        components:{
@@ -536,6 +544,9 @@
         data() {
 
             return {
+                range_1_start:0,
+                range_2_start:0,
+                range_3_start:0,
                 range_1:10000,
                 range_2:2000,
                 range_3:2000,
@@ -556,6 +567,7 @@
                 AgencyFees: 1.00,
                 unit: 'Sq. meter',
                 stampDutyType:0,
+                
                 currentHighLightValue:'',
                 miniunit:'Sq. meter',
                 options: [{
@@ -595,7 +607,7 @@
 
         computed: {
             stampDutyTypePercentage(){
-
+              
                 return parseFloat((this.stampDutyType/this.propertyValue)*100).toFixed(2)
             },
             comp_ps_properVal() {
@@ -848,7 +860,7 @@
                     default:
                         break;
                 }
-
+             /*----------------------------------------------------------------------------------------*/ 
             },
             unitchange(){
                 if(!this.__ispa)
@@ -868,8 +880,15 @@
                 }
             },
             propvalchng( ) {
-                if(this.propertyValue>= 9000 && this.propertyValue<100000000) this.range_1+=10000
-                else this.range_1 = 12000
+                if(this.propertyValue>= 9000 && this.propertyValue<100000000)
+                 {
+                    this.range_1_start = big(this.range)
+                    this.range_1+=big(100000)
+                    }
+                else {
+                    this.range_1 = 10000
+                    this.range_1_start = 0;
+                }
                 this.$emit('propertyValueinput', this.propertyValue)
             },
             propvalSliderchng() {
@@ -899,14 +918,17 @@
             },
             multi_stamp_front(data){
                 this.stampDutyType = data;
+                 
                // alert('stamp multiple event fired')
             },
              single_stamp_front(data){
                 this.stampDutyType = data;
+                    if (this.__ispa)  this.stampDutyType = 0
                // alert('stamp multiple event fired')
             },
             commercial_stamp_front(data){
                 this.stampDutyType = data;
+                    if (this.__ispa)  this.stampDutyType = 0
                // alert('stamp multiple event fired')
             }
 
@@ -922,6 +944,10 @@
         },
         updated(){
             console.log('updating dom')
+        },
+        mounted(){
+            this.stampDutyType =0.0
+            //this.stampDutyTypePercentage = 0.0
         }
 
     }
