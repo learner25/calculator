@@ -84,7 +84,7 @@ export default {
      watch:{
        comp_stampduty:function(newval)
        {
-           alert(newval+'changed new stampduty from single stampduty')
+         //  alert(newval+'changed new stampduty from single stampduty')
             this.$emit('single_stamp_duty_changed',newval)
        }
    }
